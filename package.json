@@ -1,0 +1,26 @@
+{
+  "name": "website-max-klopsch-compute-engine",
+  "description": "My own personal website on Google Cloud Compute Engine.",
+  "version": "0.0.1",
+  "main": "app.js",
+  "license": "MIT",
+  "author": "Max Klopsch",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "deploy": "gcloud app deploy",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified \" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.16.0"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^2.3.0"
+  }
+}
