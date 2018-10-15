@@ -6,8 +6,15 @@ html(lang="en")
         header
             h1 Flash Cards
         section#content
+            ul
+                each color in colors
+                    li= color
             h2= prompt
             p
                 i Hint: #{hint}
+            if variableDoesNotExist
+                p This part is conditional.
+            else
+                p This is part of else.
         footer
             p An app to help you study.
