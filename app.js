@@ -2,8 +2,14 @@ const express = require('express');
 
 const app = express();
 
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-  res.status(200).send('Hello, world!').end();
+  res.render('index');
+});
+
+app.get('/test', (req, res) => {
+  res.status(200).send('<h1>This is the test page!</h1>').end();
 });
 
 // Start the server
