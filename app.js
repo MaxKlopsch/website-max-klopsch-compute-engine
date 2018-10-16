@@ -56,7 +56,12 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('hello', {name: req.cookies.username});
+    if(req.cookies.hasOwnProperty('username')) {
+        res.locals = {
+            name: req.cookies.username
+        };
+    }
+    res.render('hello');
 });
 
 app.post('/hello', (req, res) => {
