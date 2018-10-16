@@ -4,6 +4,7 @@ const http = require('http');
 const https = require('https');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -19,6 +20,7 @@ const credentials = {
 };
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser());
 
 app.set('view engine', 'pug');
 
@@ -54,11 +56,12 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('hello');
+    res.render('hello', {name: req.cookies.username});
 });
 
 app.post('/hello', (req, res) => {
     // console.log(req.body);
+    res.cookie('username', req.body.username);
     res.render('hello', {name: req.body.username});
 });
 
