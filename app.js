@@ -50,6 +50,14 @@ app.get('/cards', (req, res) => {
     //  res.render('card', {prompt: "Who is buried in Grant's tomb?"});
 });
 
+app.get('/hello', (req, res) => {
+    res.render('hello');
+});
+
+app.post('/hello', (req, res) => {
+    res.render('hello');
+});
+
 app.get('/test', (req, res) => {
     res.status(200).send('<h1>This is the test page!</h1>').end();
 });
