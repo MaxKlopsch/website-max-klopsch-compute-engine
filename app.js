@@ -4,6 +4,10 @@ const app = express();
 
 app.set('view engine', 'pug');
 
+// Used to serve static file for Let's Encrypt certificate
+// Needs limiting to only public static file and see if still needed to renew certificate
+// app.use(express.static(__dirname, { dotfiles: 'allow' } ));
+
 app.get('/', (req, res) => {
     res.render('index');
 });
