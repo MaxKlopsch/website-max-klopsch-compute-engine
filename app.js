@@ -1,6 +1,21 @@
+// Dependencies
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const express = require('express');
 
 const app = express();
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/chain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
 
 app.set('view engine', 'pug');
 
@@ -39,9 +54,16 @@ app.get('/test', (req, res) => {
     res.status(200).send('<h1>This is the test page!</h1>').end();
 });
 
-// Start the server
+// Starting both http & https servers
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+// Usage: sudo PORT=80 npm start
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-    console.log('Press Ctrl+C to quit.');
+
+httpServer.listen(PORT, () => {
+    console.log(`HTTP Server running on port ${PORT}`);
+});
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
 });
