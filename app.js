@@ -20,7 +20,7 @@ const credentials = {
 };
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser());
+app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
@@ -56,12 +56,7 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    if(req.cookies.hasOwnProperty('username')) {
-        res.locals = {
-            name: req.cookies.username
-        };
-    }
-    res.render('hello');
+    res.render('hello', {name: req.cookies.username});
 });
 
 app.post('/hello', (req, res) => {
