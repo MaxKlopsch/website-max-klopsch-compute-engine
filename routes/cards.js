@@ -8,7 +8,16 @@ router.get('/:id', (req, res) => {
     const {id} = req.params;
     const text = cards[id][side];
     const {hint} = cards[id];
-    const templateData = {text, hint, side};
+    const templateData = {id, text};
+
+    if(side === 'question') {
+        templateData.hint = hint;
+        templateData.sideToShow = 'answer';
+        templateData.sideToShowDisplay = 'Answer';
+    } else if(side === 'answer') {
+        templateData.sideToShow = 'question';
+        templateData.sideToShowDisplay = 'Question';
+    }
 
     //  res.locals.prompt = "Who is buried in Grant's tomb?";
     res.render('card', templateData);
