@@ -24,4 +24,9 @@ router.get('/:id', (req, res) => {
     //  res.render('card', {prompt: "Who is buried in Grant's tomb?"});
 });
 
+router.get('/', (req, res) => {
+    const id = Math.floor(Math.random() * cards.length) + 1; 
+    res.redirect(`/cards/${id}?side=question`);
+});
+
 module.exports = router;
