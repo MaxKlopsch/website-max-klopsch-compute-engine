@@ -88,6 +88,18 @@ app.get('/test', (req, res) => {
     res.status(200).send('<h1>This is the test page!</h1>').end();
 });
 
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+app.use((err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('error');
+});
+
 // Starting both http & https servers
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
