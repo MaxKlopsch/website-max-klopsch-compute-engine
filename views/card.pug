@@ -2,13 +2,7 @@ extends layout.pug
 
 block content
     section#content
-        ul
-            each color in colors
-                li= color
-        h2= prompt
+        h2= text
+        if side == 'answer'
         p
             i Hint: #{hint}
-        if variableDoesNotExist
-            p This part is conditional.
-        else
-            p This is part of else.
