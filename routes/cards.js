@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    const id = Math.floor(Math.random() * cards.length) + 1; 
+    const id = Math.floor(Math.random() * cards.length); 
     res.redirect(`/cards/${id}?side=question`);
 });
 
