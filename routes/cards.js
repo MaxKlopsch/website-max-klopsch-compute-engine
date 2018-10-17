@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const {data} = require('../data/flashcardData.json');
+const {cards} = data;
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     const colors = [
         'red',
         'orange',
@@ -12,8 +14,8 @@ router.get('/', (req, res) => {
     ];
     //  res.locals.prompt = "Who is buried in Grant's tomb?";
     res.locals = {
-        prompt: "Who is buried in Grant's tomb?",
-        hint: "Think about whose tomb it is.",
+        prompt: cards[req.params.id].question,
+        hint: cards[req.params.id].hint,
         colors: colors
     };
     res.render('card');
