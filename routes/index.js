@@ -5,10 +5,6 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
-router.get('/flashcards', (req, res) => {
-    res.render('flashcards');
-});
-
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
     if(name) {

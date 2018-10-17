@@ -9,11 +9,11 @@ block card
                 h2= text
                 if hint
                     p.hint
-                        i Hint: #{hint}
+                        i= hint
             .card-flip-wrap
-                a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
+                a(href=`${id}?side=${sideToShow}`)
                     img.card-flip(src="/img/flip.svg", alt="Flip Card")
             .card-next
-                a(href="/cards") Next card
+                a(href="/cards")
                     img(src="/img/next.svg", alt="Next Card")
     script(src="/js/app.js")
