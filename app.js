@@ -28,65 +28,11 @@ app.set('view engine', 'pug');
 // Needs limiting to only public static file and see if still needed to renew certificate
 // app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
+const mainRoutes = require('./routes');
+const cardRoutes = require('./routes/cards');
 
-app.get('/flashcards', (req, res) => {
-    res.render('flashcards');
-});
-
-app.get('/cards', (req, res) => {
-    const colors = [
-        'red',
-        'orange',
-        'yellow',
-        'green',
-        'blue',
-        'purple'
-    ];
-    //  res.locals.prompt = "Who is buried in Grant's tomb?";
-    res.locals = {
-        prompt: "Who is buried in Grant's tomb?",
-        hint: "Think about whose tomb it is.",
-        colors: colors
-    };
-    res.render('card');
-    //  res.render('card', {prompt: "Who is buried in Grant's tomb?"});
-});
-
-app.get('/hello', (req, res) => {
-    const name = req.cookies.username;
-    if(name) {
-        res.redirect('/home');
-    } else {
-        res.render('hello');
-    }
-});
-
-app.get('/home', (req, res) => {
-    const name = req.cookies.username;
-    if(name) {
-        res.render('home', {name});
-    } else {
-        res.redirect('/hello');
-    }
-});
-
-app.post('/hello', (req, res) => {
-    // console.log(req.body);
-    res.cookie('username', req.body.username);
-    res.redirect('/home');
-});
-
-app.post('/goodbye', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/hello');
-});
-
-app.get('/test', (req, res) => {
-    res.status(200).send('<h1>This is the test page!</h1>').end();
-});
+app.use(mainRoutes);
+app.use('/cards', cardRoutes);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
