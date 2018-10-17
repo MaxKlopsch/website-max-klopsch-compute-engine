@@ -56,13 +56,32 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('hello', {name: req.cookies.username});
+    const name = req.cookies.username;
+    if(name) {
+        res.redirect('/home');
+    } else {
+        res.render('hello');
+    }
+});
+
+app.get('/home', (req, res) => {
+    const name = req.cookies.username;
+    if(name) {
+        res.render('home', {name});
+    } else {
+        res.redirect('/hello');
+    }
 });
 
 app.post('/hello', (req, res) => {
     // console.log(req.body);
     res.cookie('username', req.body.username);
-    res.render('hello', {name: req.body.username});
+    res.redirect('/home');
+});
+
+app.post('/goodbye', (req, res) => {
+    res.clearCookie('username');
+    res.redirect('/hello');
 });
 
 app.get('/test', (req, res) => {
