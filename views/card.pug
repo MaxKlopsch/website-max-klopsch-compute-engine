@@ -1,11 +1,19 @@
-extends layout.pug
+extends app
 
-block content
-    section#content
-        h2= text
-        if hint
-            p
-                i Hint: #{hint}
-        a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
-        br
-        a(href="/cards") Next card
+block card
+    section.flashcards
+        .card(class=`card-${side}`)
+            .card-header
+            h1.card-title= side
+            #content
+                h2= text
+                if hint
+                    p.hint
+                        i Hint: #{hint}
+            .card-flip-wrap
+                a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
+                    img.card-flip(src="/img/flip.svg", alt="Flip Card")
+            .card-next
+                a(href="/cards") Next card
+                    img(src="/img/next.svg", alt="Next Card")
+    script(src="/js/app.js")

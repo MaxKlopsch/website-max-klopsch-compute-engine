@@ -1,8 +1,7 @@
-extends layout
+extends app
 
-block content
-    h2 Welcome, student!
-    form(action='/hello', method='post')
-        label(for="username") Please enter your name:
-            input(type="text", name='username')
-        button(type='submit') Submit
+block intro
+    form.namecard-form(action='/hello', method='post')
+        label.namecard-prompt(for="username") Please enter your name:
+            input.namecard-name(type="text", name='username')
+        button.namecard-submit(type='submit') Submit

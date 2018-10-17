@@ -1,7 +1,5 @@
-extends layout
+extends app
 
-block content
-    section#content
-        h2 Welcome, #{name}!
-        form(action='/goodbye', method='post')
-            button(type='submit') Goodbye
+block intro
+    h1.namecard-prompt Let's get started
+    a.namecard-submit(href="/cards") Begin!
