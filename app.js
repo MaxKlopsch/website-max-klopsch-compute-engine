@@ -4,6 +4,7 @@ const http = require('http');
 const https = require('https');
 const express = require('express');
 const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
 
 const app = express();
@@ -31,9 +32,11 @@ app.set('view engine', 'pug');
 
 const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
+const apiRoutes = require('./routes/restApi');
 
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
+app.use('/questions', jsonParser, apiRoutes);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
