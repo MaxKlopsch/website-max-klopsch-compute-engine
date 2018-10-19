@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
 // GET /questions/:id
 // Return specific question
 router.get("/:id", (req, res) => {
-    res.json({response: `Received a GET request for a specific ID ${id}`});
+    res.json({response: `Received a GET request for a specific ID ${req.params.id}`});
 });
 
 module.exports = router;
