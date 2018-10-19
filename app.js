@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
 
+// db instance connection
+require("./config/db");
+
 const app = express();
 
 // Certificate
