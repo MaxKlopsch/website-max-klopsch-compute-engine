@@ -65,4 +65,21 @@ router.post("/:qID/answers/:aID/vote-:dir", (req, res) => {
     });
 });
 
+// Catch 404 error and forward to error handler
+router.use((req, res, next) => {
+    const err = new Error("Not Found");
+    err.status = 404;
+    next(err);
+});
+
+// Error Handler
+router.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({
+        error: {
+            message: err.message
+        }
+    });
+});
+
 module.exports = router;
