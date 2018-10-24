@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Question = require("../config/models").Question;
 
+router.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if(req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE");
+        return res.status(200).json({});
+    }
+    next();
+});
+
 router.param("qID", (req, res, next, id) => {
     Question.findById(id, (err, doc) => {
         if(err) return next(err);
