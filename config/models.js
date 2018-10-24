@@ -10,7 +10,7 @@ const sortAnswers = function(a, b) {
         return b.updatedAt - a.updatedAt;
     }
     return b.votes - a.votes;
-};
+}
 
 const AnswerSchema = new Schema({
     text: String,
@@ -39,7 +39,7 @@ const QuestionSchema = new Schema({
     answers: [AnswerSchema]
 });
 
-QuestionSchema.pre("save", () => {
+QuestionSchema.pre("save", (next) => {
     this.answers.sort(sortAnswers);
     next();
 });
