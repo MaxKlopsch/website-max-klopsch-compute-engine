@@ -13,10 +13,12 @@ router.get("/", (req, res, next) => {
 
 // POST /questions
 // Create a question
-router.post("/", (req, res) => {
-    res.json({
-        response: "Received a POST request",
-        body: req.body
+router.post("/", (req, res, next) => {
+    const question = new Question(req.body);
+    question.save((err, question) => {
+        if(err) return next(err);
+        res.status(201);
+        res.json(question);
     });
 });
 
