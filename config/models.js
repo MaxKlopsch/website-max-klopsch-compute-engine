@@ -7,13 +7,7 @@ const sortAnswers = function(a, b) {
     // 0 no change
     // + postive a after b
     if(a.votes === b.votes) {
-        if(a.updatedAt > b.updatedAt) {
-            return -1;
-        } else if(a.updatedAt < b.updatedAt) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return b.updatedAt - a.updatedAt;
     }
     return b.votes - a.votes;
 };
@@ -32,7 +26,7 @@ const QuestionSchema = new Schema({
 });
 
 QuestionSchema.pre("save", () => {
-    this.answers.sort();
+    this.answers.sort(sortAnswers);
     next();
 });
 
