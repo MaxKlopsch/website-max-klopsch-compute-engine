@@ -15,6 +15,16 @@ router.param("qID", (req, res, next, id) => {
     });
 });
 
+router.param("aID", (req, res, next, id) => {
+    req.answer = req.question.answers.id(id);
+    if(!req.answer) {
+        err = new Error("Not Found");
+        err.status = 404;
+        return next(err);
+    }
+    return next();
+});
+
 // GET /questions
 // Return question collection
 router.get("/", (req, res, next) => {
@@ -54,12 +64,10 @@ router.post("/:qID/answers", (req, res, next) => {
 
 // PUT /questions/:qID/answers/:aID
 // Edit a specific answer
-router.put("/:qID/answers/:aID", (req, res) => {
-    res.json({
-        response: "Received a PUT request to /answers",
-        body: req.body,
-        questionID: req.params.qID,
-        answerID: req.params.aID
+router.put("/:qID/answers/:aID", (req, res, next) => {
+    req.answer.update(req.body, (err, result) => {
+        if(err) return next(err);
+        res.json(result);
     });
 });
 
