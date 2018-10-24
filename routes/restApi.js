@@ -74,10 +74,11 @@ router.put("/:qID/answers/:aID", (req, res, next) => {
 // DELETE /questions/:qID/answers/:aID
 // Delete a specific answer
 router.delete("/:qID/answers/:aID", (req, res) => {
-    res.json({
-        response: "Received a DELETE request to /answers",
-        questionID: req.params.qID,
-        answerID: req.params.aID
+    req.answer.remove((err) => {
+        req.question.save((err, question) => {
+            if(err) return next(err);
+            res.json(question);
+        });
     });
 });
 
