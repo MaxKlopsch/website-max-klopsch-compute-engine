@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const Question = require("../config/models").Question;
 
 // GET /questions
 // Return question collection
-router.get("/", (req, res) => {
-    res.json({response: "Received a GET request"});
+router.get("/", (req, res, next) => {
+    Question.find({}, null, {sort: {createdAt: -1}}, (err, questions) => {
+        if(err) return next(err);
+        res.json(questions);
+    });
 });
 
 // POST /questions
