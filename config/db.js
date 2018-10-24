@@ -1,7 +1,7 @@
 const fs = require('fs');
 const mongoose = require("mongoose");
 
-const dbURI = fs.readFileSync('../secret.txt', 'utf8');
+const dbURI = fs.readFileSync('./secret.txt', 'utf8');
 
 const options = {
     // useMongoClient: true,
