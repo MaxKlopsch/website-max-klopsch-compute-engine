@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Question = require("../config/models").Question;
 
+router.param("qID", (req, res, next, id) => {
+    Question.findById(id, (err, doc) => {
+        if(err) return next(err);
+        if(!doc) {
+            err = new Error("Not Found");
+            err.status = 404;
+            return next(err);
+        }
+        req.question = doc;
+        return next();
+    });
+});
+
 // GET /questions
 // Return question collection
 router.get("/", (req, res, next) => {
@@ -25,10 +38,7 @@ router.post("/", (req, res, next) => {
 // GET /questions/:qID
 // Return specific question
 router.get("/:qID", (req, res, next) => {
-    Question.findById(req.params.qID, (err, doc) => {
-        if(err) return next(err);
-        res.json(doc);
-    });
+    res.json(req.question);
 });
 
 // POST /questions/:qID/answers
