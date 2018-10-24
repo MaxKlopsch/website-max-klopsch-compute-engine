@@ -43,11 +43,12 @@ router.get("/:qID", (req, res, next) => {
 
 // POST /questions/:qID/answers
 // Create an answer to a question
-router.post("/:qID/answers", (req, res) => {
-    res.json({
-        response: "Received a POST request to /answers",
-        body: req.body,
-        questionID: req.params.qID
+router.post("/:qID/answers", (req, res, next) => {
+    req.question.answers.push(req.body);
+    req.question.save((err, question) => {
+        if(err) return next(err);
+        res.status(201);
+        res.json(question);
     });
 });
 
