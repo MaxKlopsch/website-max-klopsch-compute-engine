@@ -1,3 +1,5 @@
+global.__basedir = __dirname;
+
 // Dependencies
 const fs = require('fs');
 const http = require('http');
