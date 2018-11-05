@@ -43,7 +43,7 @@ router.get('/test', (req, res) => {
  */
 router.get('/four-in-a-row', (req, res) => {
     console.log(__dirname);
-    res.sendFile(__dirname + '/public/html/four-in-a-row.html');
+    res.sendFile(__dirname + '/../public/html/four-in-a-row.html');
 });
 
 module.exports = router;
