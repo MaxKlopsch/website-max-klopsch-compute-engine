@@ -42,7 +42,8 @@ router.get('/test', (req, res) => {
  * Serve Four in a Row game
  */
 router.get('/four-in-a-row', (req, res) => {
-    res.sendFile('../public/html/four-in-a-row.html');
+    console.log(__dirname);
+    res.sendFile(__dirname + '/public/html/four-in-a-row.html');
 });
 
 module.exports = router;
