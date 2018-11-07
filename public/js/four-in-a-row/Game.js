@@ -143,4 +143,14 @@ class Game {
 
         return win;
     }
+
+    /** 
+     * Displays game over message.
+     * @param {string} message - Game over message.      
+     */
+    gameOver(message) {
+        const e = document.getElementById("game-over");
+        e.textContent = message;
+        e.style.display = "block";
+    }
 }
