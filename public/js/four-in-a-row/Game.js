@@ -84,6 +84,26 @@ class Game {
     }
 
     /** 
+     * Updates game state after token is dropped. 
+     * @param   {Object}  token  -  The token that's being dropped.
+     * @param   {Object}  target -  Targeted space for dropped token.
+     */
+    updateGameState(token, target) {
+        target.mark(token);
+        if(this.checkForWin(target)) {
+            this.gameOver(`${target.owner.name} wins!`);
+        } else {
+            this.switchPlayers();
+            if(this.activePlayer.checkToken()) {
+                this.activePlayer.activeToken.drawHTMLToken();
+                this.ready = true;
+            } else {
+                this.gameOver('No more tokens!');
+            }
+        }
+    }
+
+    /** 
      * Checks if there a winner on the board after each token drop.
      * @param   {Object}    Targeted space for dropped token.
      * @return  {boolean}   Boolean value indicating whether the game has been won (true) or not (false)
