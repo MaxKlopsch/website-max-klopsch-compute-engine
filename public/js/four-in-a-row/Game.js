@@ -71,6 +71,19 @@ class Game {
     }
 
     /** 
+     * Switches active player. 
+     */
+    switchPlayers() {
+        for(let player of this.players) {
+            if(player.active) {
+                player.active = false;
+            } else {
+                player.active = true;
+            }
+        }
+    }
+
+    /** 
      * Checks if there a winner on the board after each token drop.
      * @param   {Object}    Targeted space for dropped token.
      * @return  {boolean}   Boolean value indicating whether the game has been won (true) or not (false)
