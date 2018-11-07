@@ -96,7 +96,7 @@ class Game {
             this.gameOver(`${target.owner.name} wins!`);
         } else {
             this.switchPlayers();
-            if(this.activePlayer.checkToken()) {
+            if(this.activePlayer.checkTokens()) {
                 this.activePlayer.activeToken.drawHTMLToken();
                 this.ready = true;
             } else {
