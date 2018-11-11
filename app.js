@@ -5,6 +5,7 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const express = require('express');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
@@ -25,6 +26,7 @@ const credentials = {
     ca: ca
 };
 
+app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public'));
