@@ -31,26 +31,34 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public'));
 
+// view engine setup
 app.set('view engine', 'pug');
+app.set('views', 'views');
 
 // Used to serve static file for Let's Encrypt certificate
 // Needs limiting to only public static file and see if still needed to renew certificate
 // app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 
+// include routes
 const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
 const apiRoutes = require('./routes/restApi');
+const bookAppRoutes = require('./routes/bookApp');
 
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
+app.use('/books', jsonParser, bookAppRoutes);
 
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
+// error handler
+// define as the last app.use callback
 app.use((err, req, res, next) => {
     res.locals.error = err;
     res.status(err.status || 500);
