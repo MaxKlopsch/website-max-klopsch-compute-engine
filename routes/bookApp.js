@@ -20,5 +20,10 @@ router.get('/contact', (req, res) => {
 router.get('/register', (req, res) => {
     res.render('register', { title: 'Register', baseUrl: req.baseUrl });
 });
+
+// POST /register
+router.post('/register', (req, res) => {
+    res.send('User created');
+});
   
   module.exports = router;
