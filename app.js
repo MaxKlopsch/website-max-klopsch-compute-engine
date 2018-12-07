@@ -62,7 +62,11 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     res.locals.error = err;
     res.status(err.status || 500);
-    res.render('error');
+    if (req.originalUrl.startsWith('/books')) {
+        res.render('bookError', { message: err.message, baseUrl: '/books' });
+    } else {
+        res.render('error');
+    }
 });
 
 // Starting both http & https servers
