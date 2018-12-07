@@ -15,5 +15,10 @@ router.get('/about', (req, res) => {
 router.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact', baseUrl: req.baseUrl });
 });
+
+// GET /register
+router.get('/register', (req, res) => {
+    res.render('register', { title: 'Register', baseUrl: req.baseUrl });
+});
   
   module.exports = router;
