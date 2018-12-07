@@ -3,17 +3,17 @@ var router = express.Router();
 
 // GET /
 router.get('/', (req, res) => {
-    res.render('bookIndex', { title: 'Home' });
+    res.render('bookIndex', { title: 'Home', baseUrl: req.baseUrl });
 });
   
 // GET /about
 router.get('/about', (req, res) => {
-    res.render('about', { title: 'About' });
+    res.render('about', { title: 'About', baseUrl: req.baseUrl });
 });
   
 // GET /contact
 router.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' });
+    res.render('contact', { title: 'Contact', baseUrl: req.baseUrl });
 });
   
   module.exports = router;
