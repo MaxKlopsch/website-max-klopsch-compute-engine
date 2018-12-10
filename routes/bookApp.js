@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const User = require("../config/user")
+const User = require("../config/models/user")
 
 // GET /
 router.get('/', (req, res) => {

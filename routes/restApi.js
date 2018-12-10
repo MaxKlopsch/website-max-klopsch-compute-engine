@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Question = require("../config/models").Question;
+const Question = require("../config/models/question").Question;
 
 router.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
