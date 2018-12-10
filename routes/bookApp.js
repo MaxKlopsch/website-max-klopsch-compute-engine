@@ -44,6 +44,15 @@ router.post('/register', (req, res, next) => {
                 favoriteBook: req.body.favoriteBook,
                 password: req.body.password
             }
+
+            // use schema's 'create' method to insert document into Mongo
+            User.create(userData, (error, user) => {
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.redirect(`profile`);
+                }
+            });
         } else {
             const err = new Error("All fields required.");
             err.status = 400;
