@@ -16,12 +16,13 @@ require("./config/db");
 const app = express();
 
 // Certificate
+let privateKey, certificate, ca, credentials;
 if (app.get("env") === "production") {
-    const privateKey = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/privkey.pem', 'utf8');
-    const certificate = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/cert.pem', 'utf8');
-    const ca = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/chain.pem', 'utf8');
+    privateKey = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/privkey.pem', 'utf8');
+    certificate = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/cert.pem', 'utf8');
+    ca = fs.readFileSync('/etc/letsencrypt/live/maxklopsch.com/chain.pem', 'utf8');
 
-    const credentials = {
+    credentials = {
         key: privateKey,
         cert: certificate,
         ca: ca
@@ -73,8 +74,9 @@ app.use((err, req, res, next) => {
 
 // Starting both http & https servers
 const httpServer = http.createServer(app);
+let httpsServer;
 if (app.get("env") === "production") {
-    const httpsServer = https.createServer(credentials, app);
+    httpsServer = https.createServer(credentials, app);
 }
 
 // Usage: sudo npm start
