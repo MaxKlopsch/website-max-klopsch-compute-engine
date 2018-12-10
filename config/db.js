@@ -9,6 +9,7 @@ const options = {
 };
 
 mongoose.connect(dbURI, options);
+mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
 
