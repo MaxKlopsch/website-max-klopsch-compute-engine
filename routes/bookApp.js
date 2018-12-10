@@ -18,7 +18,7 @@ router.get('/contact', (req, res) => {
 
 // GET /register
 router.get('/register', (req, res) => {
-    res.render('register', { title: 'Register', baseUrl: req.baseUrl });
+    res.render('register', { title: 'Sign Up', baseUrl: req.baseUrl });
 });
 
 // POST /register
