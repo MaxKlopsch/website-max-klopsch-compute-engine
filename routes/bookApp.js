@@ -30,6 +30,20 @@ router.post('/register', (req, res, next) => {
         req.body.password &&
         req.body.confirmPassword) {
 
+            // confirm that user typed in the same password twice
+            if (req.body.password !== req.body.confirmPassword) {
+                const err = new Error("Passwords do not match.");
+                err.status = 400;
+                return next(err);
+            }
+
+            // create object with form input
+            const userData = {
+                email: req.body.email,
+                name: req.body.name,
+                favoriteBook: req.body.favoriteBook,
+                password: req.body.password
+            }
         } else {
             const err = new Error("All fields required.");
             err.status = 400;
