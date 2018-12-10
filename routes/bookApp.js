@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const User = require("../config/user")
 
 // GET /
 router.get('/', (req, res) => {
@@ -22,8 +23,18 @@ router.get('/register', (req, res) => {
 });
 
 // POST /register
-router.post('/register', (req, res) => {
-    res.send('User created');
+router.post('/register', (req, res, next) => {
+    if (req.body.email &&
+        req.body.name &&
+        req.body.favoriteBook &&
+        req.body.password &&
+        req.body.confirmPassword) {
+
+        } else {
+            const err = new Error("All fields required.");
+            err.status = 400;
+            return next(err);
+        }
 });
   
   module.exports = router;
