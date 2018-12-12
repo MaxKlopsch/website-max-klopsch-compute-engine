@@ -62,3 +62,4 @@ typings/
 
 # secrets
 secret.txt
+session-secret.txt

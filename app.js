@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // db instance connection
 require("./config/db");
@@ -30,6 +31,11 @@ if (app.get("env") === "production") {
 }
 
 app.use(helmet());
+app.use(session({
+    secret: fs.readFileSync('session-secret.txt', 'utf8'),
+    resave: true,
+    saveUninitialized: false
+}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public'));
