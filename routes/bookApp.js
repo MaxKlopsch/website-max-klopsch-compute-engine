@@ -66,8 +66,14 @@ router.get('/login', (req, res) => {
 });
 
 // POST /login
-router.post('/login', (req, res) => {
-    res.send('Logged In!');
+router.post('/login', (req, res, next) => {
+    if (req.body.email && req.body.password) {
+
+    } else {
+        const err = new Error("Email and password are required.");
+        err.status = 401;
+        return next(err);
+    }
 });
   
   module.exports = router;
