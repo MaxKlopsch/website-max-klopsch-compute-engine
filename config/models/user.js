@@ -35,6 +35,13 @@ UserSchema.statics.authenticate = function() {
         err.status = 401;
         return callback(err);
       }
+      bcrypt.compare(password, user.password, function(error, result) {
+        if (result === true) {
+          return callback(null, user);
+        } else {
+          return callback();
+        }
+      });
     });
 };
 
