@@ -31,11 +31,20 @@ if (app.get("env") === "production") {
 }
 
 app.use(helmet());
+
+// use sessions for tracking logins
 app.use(session({
     secret: fs.readFileSync('session-secret.txt', 'utf8'),
     resave: true,
     saveUninitialized: false
 }));
+
+// make user ID available in templates
+app.use((req, res, next) => {
+    res.locals.currentUser = req.session.userId;
+    next();
+});
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public'));
