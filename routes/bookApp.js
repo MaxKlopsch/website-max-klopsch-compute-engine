@@ -59,5 +59,15 @@ router.post('/register', (req, res, next) => {
             return next(err);
         }
 });
+
+// GET /login
+router.get('/login', (req, res) => {
+    res.render('login', { title: 'Log In', baseUrl: req.baseUrl });
+});
+
+// POST /login
+router.post('/login', (req, res) => {
+    res.send('Logged In!');
+});
   
   module.exports = router;
