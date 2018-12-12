@@ -95,6 +95,14 @@ router.get('/profile', function(req, res, next) {
       err.status = 403;
       return next(err);
     }
+    User.findById(req.session.userId)
+        .exec(function (error, user) {
+          if (error) {
+            return next(error);
+          } else {
+            return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook, baseUrl: req.baseUrl });
+          }
+        });
   });
   
   module.exports = router;
