@@ -110,6 +110,11 @@ router.get('/profile', function(req, res, next) {
             return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
           }
         });
-  });
+});
+
+// GET /logout
+router.get('/logout', (req, res, next) => {
+
+});
   
   module.exports = router;
