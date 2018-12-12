@@ -50,6 +50,8 @@ router.post('/register', (req, res, next) => {
                 if (error) {
                     return next(error);
                 } else {
+                    // create a new session
+                    req.session.userId = user._id;
                     return res.redirect(`profile`);
                 }
             });
