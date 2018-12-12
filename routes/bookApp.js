@@ -5,7 +5,6 @@ const User = require("../config/models/user")
 // make baseUrl available in templates
 router.use((req, res, next) => {
     res.locals.baseUrl = req.baseUrl;
-    console.log(req.baseUrl);
     next();
 });
 
@@ -114,7 +113,16 @@ router.get('/profile', function(req, res, next) {
 
 // GET /logout
 router.get('/logout', (req, res, next) => {
-
+    if (req.session) {
+        // delete session object
+        req.session.destroy((err) => {
+          if(err) {
+            return next(err);
+          } else {
+            return res.redirect(req.baseUrl);
+          }
+        });
+    }
 });
   
   module.exports = router;
