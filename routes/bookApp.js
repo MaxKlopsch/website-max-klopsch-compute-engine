@@ -25,7 +25,7 @@ router.get('/contact', (req, res) => {
 });
 
 // GET /register
-router.get('/register', (req, res) => {
+router.get('/register', mid.loggedOut, (req, res) => {
     res.render('register', { title: 'Sign Up' });
 });
 
@@ -70,7 +70,7 @@ router.post('/register', (req, res, next) => {
 });
 
 // GET /login
-router.get('/login', (req, res) => {
+router.get('/login', mid.loggedOut, (req, res) => {
     res.render('login', { title: 'Log In' });
 });
 
