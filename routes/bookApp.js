@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require("../config/models/user")
+const mid = require('../middleware');
 
 // make baseUrl available in templates
 router.use((req, res, next) => {
