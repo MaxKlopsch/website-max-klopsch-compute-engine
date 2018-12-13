@@ -10,9 +10,10 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // db instance connection
-require("./config/db");
+const db = require("./config/db");
 
 const app = express();
 
@@ -36,7 +37,10 @@ app.use(helmet());
 app.use(session({
     secret: fs.readFileSync('session-secret.txt', 'utf8'),
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db.db
+    })
 }));
 
 // make user ID available in templates
