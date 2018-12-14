@@ -19,12 +19,16 @@ html(lang="en")
         h2 Certifications, Qualifications, Achievements
         ul
             li BSc Aerospace Engineering @ TU Delft in Delft, Netherlands
+            li Fundamentals of Digital Marketing Certification, Google Digital Garage
         h2 Projects
-        a(href="/four-in-a-row") Play Four In A Row
+        p
+            a(href="/four-in-a-row") Play Four In A Row
         p
             a(href="/home") "Login"
             br
             a(href="/cards") Begin Flash Card Study
+        p
+            a(href="/books") Bookworm app with login and user profiles
         h2 Hire me
         p 
             | I would like to work as a junior developer for a company in the East Midlands, UK or remote. I am also available to work on freelance projects, e.g. creating custom websites for you or your business. Feel free to contact me using the 
@@ -40,7 +44,8 @@ html(lang="en")
                     li
                         a(href="https://github.com/MaxKlopsch") GitHub
 
-            div Contact me
+            div.container
+                h2 Contact me
                 form(method="POST", action="/contact")
                     label(for="name") Name
                     input(type="text", id="name", name="name", placeholder="Your name")
@@ -49,5 +54,5 @@ html(lang="en")
                     label(for="phone") Phone
                     input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
                     label(for="message") Message
-                    textarea(id="message", name="message", placeholder="Your message...", style="height:200px")
+                    textarea(id="message", name="message", placeholder="Your message goes here...", style="height:200px")
                     input(type="submit", value="Submit")
