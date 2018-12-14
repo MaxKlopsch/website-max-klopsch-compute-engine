@@ -81,10 +81,10 @@ app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
 
 app.post('/contact', (req, res) => {
-    console.log(req.body.email);
+    
     const mailOptions = {
         from: `"Max Klopsch Website" ${auth.user}`,
-        to: req.body.email,
+        to: auth.user,
         subject: 'New Contact Request Max Klopsch Website',
         html: `
         <p>You have a new contact request.</p>

@@ -1,7 +1,11 @@
 doctype html
 html(lang="en")
     head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
         title Home | Max Klopsch
+        link(rel='stylesheet', href='/css/index.css')
     body
         h1 Max Klopsch | Portfolio
         h2 About me
@@ -37,3 +41,13 @@ html(lang="en")
                         a(href="https://github.com/MaxKlopsch") GitHub
 
             div Contact me
+                form(method="POST", action="/contact")
+                    label(for="name") Name
+                    input(type="text", id="name", name="name", placeholder="Your name")
+                    label(for="email") Email
+                    input(type="email", id="email", name="email", placeholder="name@domain.com")
+                    label(for="phone") Phone
+                    input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
+                    label(for="message") Message
+                    textarea(id="message", name="message", placeholder="Your message...", style="height:200px")
+                    input(type="submit", value="Submit")
