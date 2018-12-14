@@ -63,3 +63,4 @@ typings/
 # secrets
 secret.txt
 session-secret.txt
+email-auth.json

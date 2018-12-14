@@ -11,6 +11,7 @@ const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const nodemailer = require('nodemailer');
 
 // db instance connection
 const db = require("./config/db");
@@ -57,6 +58,13 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
+// Setting up nodemailer with Gmail settings
+const auth = JSON.parse(fs.readFileSync('email-auth.json'));
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth
+});
+
 // Used to serve static file for Let's Encrypt certificate
 // Needs limiting to only public static file and see if still needed to renew certificate
 // app.use(express.static(__dirname, { dotfiles: 'allow' } ));
@@ -71,6 +79,34 @@ app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
+
+app.post('/contact', (req, res) => {
+    console.log(req.body.email);
+    const mailOptions = {
+        from: `"Max Klopsch Website" ${auth.user}`,
+        to: req.body.email,
+        subject: 'New Contact Request Max Klopsch Website',
+        html: `
+        <p>You have a new contact request.</p>
+        <h3>Contact Details:</h3>
+        <ul>  
+          <li>Name: ${req.body.name}</li>
+          <li>Email: ${req.body.email}</li>
+          <li>Phone: ${req.body.phone}</li>
+        </ul>
+        <h3>Message:</h3>
+        <p>${req.body.message}</p>`
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+          res.send("Mail sent");
+        }
+    });
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
