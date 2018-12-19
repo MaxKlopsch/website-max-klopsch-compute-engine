@@ -16,9 +16,9 @@
                 <option>Select a type of media...</option>
             </select>
             <ul>
-                <li v-for="media in mediaList">
+                <li v-for="media in mediaList" v-on:click="media.showDetail = !media.showDetail">
                     <h3>{{ media.title }}</h3>
-                    <div>
+                    <div v-show="media.showDetail">
                         <p>{{ media.description }}</p>
                         <p class="byline">By: {{ media.contributor }}</p>
                     </div>
