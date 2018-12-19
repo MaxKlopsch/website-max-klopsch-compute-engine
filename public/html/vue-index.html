@@ -20,7 +20,7 @@
                     <h3>{{ media.title }}</h3>
                     <div v-show="media.showDetail">
                         <p>{{ media.description }}</p>
-                        <p class="byline">By: {{ media.contributor }}</p>
+                        <p v-if="media.contributor" class="byline">By: {{ media.contributor }}</p>
                     </div>
                 </li>
             </ul>
