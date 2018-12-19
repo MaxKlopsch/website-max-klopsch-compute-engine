@@ -50,4 +50,9 @@ router.get('/library', (req, res) => {
     res.sendFile(__basedir + '/public/html/vue-index.html');
 });
 
+// Serve Vue.js flashcards app
+router.get('/flashcards', (req, res) => {
+    res.sendFile(__basedir + '/public/html/vue-flashcards.html');
+});
+
 module.exports = router;
