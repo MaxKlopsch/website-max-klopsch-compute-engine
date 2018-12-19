@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/css/vue-styles.css" rel="stylesheet">
     <title>Hello Vue!</title>
 </head>
 <body>
-
+    <div id="helloVue">
+        <h1 v-on:click="sayHello">{{ title }}</h1>
+        <p @click="sayHello">{{ message }}</p>
+        <p v-text="title"></p>
+    </div>
+    <div id="example">
+        <h1>{{ title + ", " + name.toUpperCase() + "!" }}</h1>
+        <img v-bind:src="img.src" :alt="img.alt">
+        <p>{{ message }}</p>
+    </div>
+    <div id="book">
+        <h2 v-on:click="toggleDetails">{{ title }}</h2>
+        <div id="bookDetail" v-show="showDetail">
+            <p>{{ author }}</p>
+            <p>{{ summary }}</p>
+        </div>
+    </div>
+    <div id="colors">
+        <ul>
+            <li :style="{color:color}" v-for="(color, index) in rainbow">{{ index }} - {{ color }}</li>
+        </ul>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
     <script src="/js/vue-app.js"></script>
 </body>
