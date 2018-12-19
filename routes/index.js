@@ -45,4 +45,9 @@ router.get('/four-in-a-row', (req, res) => {
     res.sendFile(__basedir + '/public/html/four-in-a-row.html');
 });
 
+// Serve Vue.js book library app
+router.get('/library', (req, res) => {
+    res.sendFile(__basedir + '/public/html/vue-index.html');
+});
+
 module.exports = router;
