@@ -17,7 +17,8 @@
                 <option v-for="item in uniqueItemsList">{{ item }}</option>
             </select>
             <ul>
-                <li v-for="media in mediaList" v-on:click="toggleDetails(media)" v-show="type ? type === media.type : true">
+                <li v-for="media in mediaList" v-on:click="toggleDetails(media)" v-show="type ? type === media.type : true" 
+                :class="[media.showDetail ? 'less' : 'more', media.type.replace(/ .*/,'')]">
                     <h3>{{ media.title }}</h3>
                     <div v-show="media.showDetail">
                         <p>{{ media.description }}</p>
