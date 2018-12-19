@@ -13,11 +13,11 @@
         <div id="media-list">
             <h1>{{ title }}</h1>
             <select v-on:change="filterList">
-                <option>Select a type of media...</option>
-                <option v-for="item in mediaList">{{ item.type }}</option>
+                <option value="">Select a type of media...</option>
+                <option v-for="item in uniqueItemsList">{{ item }}</option>
             </select>
             <ul>
-                <li v-for="media in mediaList" v-on:click="toggleDetails(media)" v-show="type === media.type">
+                <li v-for="media in mediaList" v-on:click="toggleDetails(media)" v-show="type ? type === media.type : true">
                     <h3>{{ media.title }}</h3>
                     <div v-show="media.showDetail">
                         <p>{{ media.description }}</p>
