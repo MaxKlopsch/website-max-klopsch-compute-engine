@@ -16,7 +16,7 @@
                 <option>Select a type of media...</option>
             </select>
             <ul>
-                <li v-for="media in mediaList" v-on:click="media.showDetail = !media.showDetail">
+                <li v-for="media in mediaList" v-on:click="toggleDetails(media)">
                     <h3>{{ media.title }}</h3>
                     <div v-show="media.showDetail">
                         <p>{{ media.description }}</p>
