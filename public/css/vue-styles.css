@@ -84,7 +84,7 @@ select {
     -webkit-padding-end: 20px;
     -webkit-padding-start: 2px;
     -webkit-user-select: none;
-    background-image: url(img/arrow.png), -webkit-linear-gradient(#fff, #fff 40%, #fff);
+    background-image: url(/img/arrow.png), -webkit-linear-gradient(#fff, #fff 40%, #fff);
     background-position: 97% center;
     background-repeat: no-repeat;
     border: 1px solid #eaeaea;
