@@ -25,10 +25,27 @@ new Vue({
     el: '#flashcard-app',
     data: {
         cards: cards,
+        newFront: '',
+        newBack: '',
+        showError: false
     },
     methods: {
         toggleCard: function(card) {
             card.flipped = !card.flipped;
+        },
+        addNew: function() {
+            if (this.newFront && this.newBack) {
+                this.showError = false;
+                this.cards.push({
+                    front: this.newFront,
+                    back: this.newBack,
+                    flipped: false
+                });
+                this.newFront = '';
+                this.newBack = '';
+            } else {
+                this.showError = true;
+            }
         }
     }
 });
