@@ -55,4 +55,14 @@ router.get('/flashcards', (req, res) => {
     res.sendFile(__basedir + '/public/html/vue-flashcards.html');
 });
 
+// Serve Bootstrap 4 Full Stack Conf Coming Soon page
+router.get('/full-stack-conf-coming-soon', (req, res) => {
+    res.sendFile(__basedir + '/public/html/bootstrap-4.html');
+});
+
+// Serve Bootstrap 4 Full Stack Conf Landing Page
+router.get('/full-stack-conf', (req, res) => {
+    res.sendFile(__basedir + '/public/html/bootstrap-4-full-stack-conf.html');
+});
+
 module.exports = router;
