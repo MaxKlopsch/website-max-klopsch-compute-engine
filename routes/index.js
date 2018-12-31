@@ -70,4 +70,9 @@ router.get('/full-stack-conf', (req, res) => {
     res.sendFile(__basedir + '/public/html/bootstrap-4-full-stack-conf.html');
 });
 
+// Serve RSVP app
+router.get('/rsvp', (req, res) => {
+    res.sendFile(__basedir + '/public/html/rsvp-app.html');
+});
+
 module.exports = router;
