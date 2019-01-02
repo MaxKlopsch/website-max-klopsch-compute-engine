@@ -38,7 +38,7 @@ form.addEventListener('submit', (e) => {
 });
 
 ul.addEventListener('change', (e) => {
-    const checkbox = event.target;
+    const checkbox = e.target;
     const checked = checkbox.checked;
     const listItem = checkbox.parentNode.parentNode;
 
@@ -51,11 +51,12 @@ ul.addEventListener('change', (e) => {
 
 ul.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
-        if (e.target.textContent === 'Remove') {
-            const li = e.target.parentNode;
+        const button = e.target;
+        const li = button.parentNode;
+        if (button.textContent === 'Remove') {
             ul.removeChild(li);
-        } else if (e.target.textContent === 'Edit') {
-            
+        } else if (button.textContent === 'Edit') {
+
         }
     }
 });
