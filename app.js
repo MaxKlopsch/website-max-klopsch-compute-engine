@@ -34,6 +34,15 @@ if (app.get("env") === "production") {
 
 app.use(helmet());
 
+app.use((req, res, next) => {
+    if (req.headers.host.slice(0, 4) === 'www.') {
+        var newHost = req.headers.host.slice(4);
+        return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+    } else {
+        next();
+    }
+});
+
 // use sessions for tracking logins
 app.use(session({
     secret: fs.readFileSync('session-secret.txt', 'utf8'),
