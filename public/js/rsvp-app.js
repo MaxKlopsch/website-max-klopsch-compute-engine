@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
+            // select and run action in button's name
             nameActions[button.textContent.toLowerCase()]();
         }
     });
