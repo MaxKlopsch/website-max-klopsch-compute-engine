@@ -5,6 +5,10 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
+router.get('/resume', (req, res) => {
+    res.render('resume');
+});
+
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
     if(name) {
