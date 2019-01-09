@@ -1,26 +1,63 @@
+html {
+    font-size: 18px;
+}
+
 body {
     margin: 0;
     color: #424242;
     background-color: #E0F2F1;
 }
 
+p {
+    line-height: 1.5rem;
+}
+
 a, a:visited {
-    color: #424242;
+    color: #00796B;
+    text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
     color: #212121;
+    text-align: center;
+    margin-top: 0.8rem;
 }
 
-main {
-    width: 75%;
-    margin: 0 auto 25px auto;
+main h1::after, main h2::after {
+    content: "";
+    display: block;
+    background-color: #80CBC4;
+    height: 4px;
+    width: 50px;
+    margin: 5px auto 0 auto;
+}
+
+h3 {
+    width: max-content;
+}
+
+main h3::after {
+    content: "";
+    display: block;
+    background-color: #80CBC4;
+    height: 2px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+section {
+    padding: 12px 12.5% 12px 12.5%;
+    margin: 0 auto 0 auto;
 }
 
 nav {
     padding: 0 12.5% 0 12.5%;
     background-color: #00695C;
     border-bottom: 3px solid #64FFDA;
+}
+
+section:nth-of-type(2n) {
+    background-color: #fff;
 }
 
 /* Style inputs with type="text", select elements and textareas */
@@ -59,8 +96,14 @@ input[type=submit]:hover {
     border-radius: 5px;
     background-color: #B2DFDB;
     padding: 10px 20px;
-    width: 50%;
-    margin: 0 auto;
+    width: 80%;
+    margin: 12px auto 0 auto;
+}
+
+@media (min-width: 769px) {
+    .contact {
+        width: 50%;
+    }
 }
 
 footer {
