@@ -128,9 +128,18 @@ img {
     }
 
     .col {
-        flex: 1;
+        flex: 1 50%;
+    }
+
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .secondary {
+        order: -1;
     }
 }
+
 @media (min-width: 1025px) {
 	.main-header,
 	.row {
@@ -143,7 +152,11 @@ img {
         justify-content: space-between;
     }
 
+    .col {
+        flex-basis: 0;
+    }
+
     .primary {
-        flex: 2;
+        flex-grow: 1.4;
     }
 }
