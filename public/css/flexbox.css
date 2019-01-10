@@ -117,13 +117,18 @@ img {
     }
 
     .main-header,
-    .main-nav {
+    .main-nav,
+    .row {
         display: flex;
     }
 
     .main-header {
         flex-direction: column;
         align-items: center;
+    }
+
+    .col {
+        flex: 1;
     }
 }
 @media (min-width: 1025px) {
@@ -136,5 +141,9 @@ img {
     .main-header {
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .primary {
+        flex: 2;
     }
 }
