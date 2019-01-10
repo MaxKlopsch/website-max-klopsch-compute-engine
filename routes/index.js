@@ -79,4 +79,9 @@ router.get('/rsvp', (req, res) => {
     res.sendFile(__basedir + '/public/html/rsvp-app.html');
 });
 
+// Serve Flexbox Best City Guid page
+router.get('/best-city-guide', (req, res) => {
+    res.sendFile(__basedir + '/public/html/flexbox.html');
+});
+
 module.exports = router;
