@@ -114,12 +114,27 @@ img {
 	}
 	.tagline {
 		font-size: 1.4em;
-	}
+    }
+
+    .main-header,
+    .main-nav {
+        display: flex;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 @media (min-width: 1025px) {
 	.main-header,
 	.row {
 		width: 80%;
 		max-width: 1150px;
-	}
+    }
+
+    .main-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
