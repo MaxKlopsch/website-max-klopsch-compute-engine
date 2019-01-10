@@ -10,10 +10,15 @@ html(lang="en")
         link(rel='stylesheet', href='/css/index.css')
     body
         nav
-            a(href="/") Home
-            a(href="/resume") Resume
-            a(href="/projects") Projects
-            a(href="/contact") Contact
+            a(href="javascript:void(0);", onclick="toggleMenu()").hamburger
+                div.hamburgerSlice
+                div.hamburgerSlice
+                div.hamburgerSlice
+            div#nav
+                a(href="/") Home
+                a(href="/resume") Resume
+                a(href="/projects") Projects
+                a(href="/contact") Contact
         main
             h1 Max Klopsch | Portfolio
             section
@@ -88,6 +93,7 @@ html(lang="en")
                 textarea(id="message", name="message", placeholder="Your message goes here...")
                 input(type="submit", value="Submit")
         footer#footer
+            a(href="#top").top &uArr;
             div#social
                 h2 Find me on
                 ul
@@ -102,3 +108,4 @@ html(lang="en")
                             img(src="/img/Treehouse.svg", alt="Team Treehouse Logo")
             p#copyright Max Klopsch &copy; 
                 = new Date().getFullYear()
+        script(src="/js/index.js")
