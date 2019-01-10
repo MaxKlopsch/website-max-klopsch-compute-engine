@@ -66,6 +66,16 @@ img {
 
 /* ---- Layout Containers ---- */
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-footer {
+    margin-top: auto;
+}
+
 .main-header {
 	padding-top: .5em;
 	padding-bottom: .5em;
