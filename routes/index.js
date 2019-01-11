@@ -9,6 +9,10 @@ router.get('/resume', (req, res) => {
     res.render('resume');
 });
 
+router.get('/contact', (req, res) => {
+    res.render('contact', { sent: false });
+});
+
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
     if(name) {

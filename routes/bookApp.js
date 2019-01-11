@@ -13,15 +13,15 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
     res.render('bookIndex', { title: 'Home' });
 });
-  
+
 // GET /about
 router.get('/about', (req, res) => {
     res.render('about', { title: 'About' });
 });
-  
+
 // GET /contact
 router.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' });
+    res.render('bookContact', { title: 'Contact' });
 });
 
 // GET /register
@@ -99,11 +99,11 @@ router.post('/login', (req, res, next) => {
 router.get('/profile', mid.requiresLogin, function(req, res, next) {
     User.findById(req.session.userId)
         .exec(function (error, user) {
-          if (error) {
-            return next(error);
-          } else {
-            return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
-          }
+            if (error) {
+                return next(error);
+            } else {
+                return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
+            }
         });
 });
 
@@ -112,13 +112,13 @@ router.get('/logout', (req, res, next) => {
     if (req.session) {
         // delete session object
         req.session.destroy((err) => {
-          if(err) {
-            return next(err);
-          } else {
-            return res.redirect(req.baseUrl);
-          }
+            if(err) {
+                return next(err);
+            } else {
+                return res.redirect(req.baseUrl);
+            }
         });
     }
 });
-  
-  module.exports = router;
+
+module.exports = router;

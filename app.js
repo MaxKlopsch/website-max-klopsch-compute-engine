@@ -90,7 +90,7 @@ app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
 
 app.post('/contact', (req, res) => {
-    
+
     const mailOptions = {
         from: `"Max Klopsch Website" ${auth.user}`,
         to: auth.user,
@@ -99,20 +99,21 @@ app.post('/contact', (req, res) => {
         <p>You have a new contact request.</p>
         <h3>Contact Details:</h3>
         <ul>
-          <li>Name: ${req.body.name}</li>
-          <li>Email: ${req.body.email}</li>
-          <li>Phone: ${req.body.phone}</li>
+            <li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Phone: ${req.body.phone}</li>
         </ul>
         <h3>Message:</h3>
         <p>${req.body.message}</p>`
     };
-    
+
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+            console.log(error);
+            res.render('contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message });
         } else {
-          console.log('Email sent: ' + info.response);
-          res.send("Mail sent");
+            console.log('Email sent: ' + info.response);
+            res.render('contact', { sent: true });
         }
     });
 });

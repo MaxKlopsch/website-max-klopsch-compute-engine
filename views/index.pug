@@ -84,13 +84,13 @@ html(lang="en")
             h2 Contact me
             form(method="POST", action="/contact")
                 label(for="name") Name
-                input(type="text", id="name", name="name", placeholder="Your name")
+                input(type="text", id="name", name="name", placeholder="Your name", required)
                 label(for="email") Email
-                input(type="email", id="email", name="email", placeholder="name@domain.com")
+                input(type="email", id="email", name="email", placeholder="name@domain.com", required)
                 label(for="phone") Phone
                 input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
                 label(for="message") Message
-                textarea(id="message", name="message", placeholder="Your message goes here...")
+                textarea(id="message", name="message", placeholder="Your message goes here...", required)
                 input(type="submit", value="Submit")
         footer#footer
             a(href="#top").top &uArr;

@@ -1,12 +1,69 @@
-extends bookLayout
-
-block content
-  .main.container
-    .row
-      .col-md-8.col-md-offset-2
-        h1.display-4.m-b-2 Contact Us
-        p Sed dictum dolor vitae dignissim scelerisque. Ut tincidunt, tortor at accumsan eleifend, tellus lectus vestibulum nibh, accumsan sagittis turpis nisl eu mauris. Mauris ut laoreet sapien. Nam suscipit, dui at condimentum accumsan, dui sapien tincidunt.
-
-        a.btn.btn-primary(href='#') Get in touch
-
-
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        title Contact Me | Max Klopsch
+        meta(name="description", content="Hey, I'm Max Klopsch. This is my personal website. I'm a full-stack web developer living in Nottingham, UK.")
+        link(rel="shortcut icon", href="/img/favicon.ico")
+        link(rel='stylesheet', href='/css/index.css')
+    body
+        nav
+            a(href="javascript:void(0);", onclick="toggleMenu()").hamburger
+                div.hamburgerSlice
+                div.hamburgerSlice
+                div.hamburgerSlice
+            div#nav
+                a(href="/") Home
+                a(href="/resume") Resume
+                a(href="/projects") Projects
+                a(href="/contact") Contact
+        main
+            h1 Max Klopsch | Contact Me
+        if sent === "error"
+            h2 Unfortunately there was an error sending your message. Please try again later.
+        if sent === true
+            h2 Message was sent.
+        else
+            div.contact
+                h2 Contact me
+                form(method="POST", action="/contact")
+                    label(for="name") Name
+                    if name
+                        input(type="text", id="name", name="name", placeholder="Your name", value=name, required)
+                    else
+                        input(type="text", id="name", name="name", placeholder="Your name", required)
+                    label(for="email") Email
+                    if email
+                        input(type="email", id="email", name="email", placeholder="name@domain.com", value=email, required)
+                    else
+                        input(type="email", id="email", name="email", placeholder="name@domain.com", required)
+                    label(for="phone") Phone
+                    if phone
+                        input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891", value=phone)
+                    else
+                        input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
+                    label(for="message") Message
+                    if message
+                        textarea(id="message", name="message", placeholder="Your message goes here...", value=message, required)
+                    else
+                        textarea(id="message", name="message", placeholder="Your message goes here...", required)
+                    input(type="submit", value="Submit")
+        footer#footer
+            a(href="#top").top &uArr;
+            div#social
+                h2 Find me on
+                ul
+                    li
+                        a(href="https://www.linkedin.com/in/MaxKlopsch/", target="_blank", title="LinkedIn")
+                            img(src="/img/LinkedIn.svg", alt="LinkedIn Logo")
+                    li
+                        a(href="https://github.com/MaxKlopsch", target="_blank", title="GitHub")
+                            img(src="/img/GitHub.svg", alt="GitHub Logo")
+                    li
+                        a(href="https://teamtreehouse.com/maxklopsch", target="_blank", title="Team Treehouse")
+                            img(src="/img/Treehouse.svg", alt="Team Treehouse Logo")
+            p#copyright Max Klopsch &copy; 
+                = new Date().getFullYear()
+        script(src="/js/index.js")
