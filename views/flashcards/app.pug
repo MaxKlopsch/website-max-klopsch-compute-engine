@@ -5,7 +5,7 @@ block content
         .namecard-login
             if name
                 p.namecard-greeting Welcome, #{name}!
-                form.namecard-exit(action="/goodbye", method='POST')
+                form.namecard-exit(action="/cards/goodbye", method='POST')
                     button(type='submit')
                         img(src="/img/close.svg", alt="Logout")
             else

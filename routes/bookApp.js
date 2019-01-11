@@ -11,22 +11,22 @@ router.use((req, res, next) => {
 
 // GET /
 router.get('/', (req, res) => {
-    res.render('bookIndex', { title: 'Home' });
+    res.render('bookworm/bookIndex', { title: 'Home' });
 });
 
 // GET /about
 router.get('/about', (req, res) => {
-    res.render('about', { title: 'About' });
+    res.render('bookworm/about', { title: 'About' });
 });
 
 // GET /contact
 router.get('/contact', (req, res) => {
-    res.render('bookContact', { title: 'Contact' });
+    res.render('bookworm/bookContact', { title: 'Contact' });
 });
 
 // GET /register
 router.get('/register', mid.loggedOut, (req, res) => {
-    res.render('register', { title: 'Sign Up' });
+    res.render('bookworm/register', { title: 'Sign Up' });
 });
 
 // POST /register
@@ -71,7 +71,7 @@ router.post('/register', (req, res, next) => {
 
 // GET /login
 router.get('/login', mid.loggedOut, (req, res) => {
-    res.render('login', { title: 'Log In' });
+    res.render('bookworm/login', { title: 'Log In' });
 });
 
 // POST /login
@@ -102,7 +102,7 @@ router.get('/profile', mid.requiresLogin, function(req, res, next) {
             if (error) {
                 return next(error);
             } else {
-                return res.render('profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
+                return res.render('bookworm/profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook });
             }
         });
 });

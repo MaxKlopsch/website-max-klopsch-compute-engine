@@ -110,10 +110,10 @@ app.post('/contact', (req, res) => {
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-            res.render('contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message });
+            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message });
         } else {
             console.log('Email sent: ' + info.response);
-            res.render('contact', { sent: true });
+            res.render('main/contact', { sent: true });
         }
     });
 });
@@ -131,9 +131,11 @@ app.use((err, req, res, next) => {
     res.locals.error = err;
     res.status(err.status || 500);
     if (req.originalUrl.startsWith('/books')) {
-        res.render('bookError', { message: err.message, baseUrl: '/books' });
+        res.render('bookworm/bookError', { message: err.message, baseUrl: '/books' });
+    } else if (req.originalUrl.startsWith('/cards')) {
+        res.render('flashcards/error');
     } else {
-        res.render('error');
+        res.render('flashcards/error');
     }
 });
 
