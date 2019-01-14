@@ -3,9 +3,9 @@ extends bookLayout
 block content
   .main.container.clearfix
     .row
-      .col-md-8.col-md-offset-2
+      .col-md-8.offset-md-2
         h1.display-4
-          img.avatar.img-circle.hidden-xs-down(src='/img/avatar.png', alt='avatar')
+          img.avatar.rounded-circle.d-none.d-sm-block(src='/img/avatar.png', alt='avatar')
           | #{name}
         h2.favorite-book Favorite Book
         | #{favorite}

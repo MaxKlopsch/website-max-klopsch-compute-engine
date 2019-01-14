@@ -1,21 +1,23 @@
-nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
-  button.navbar-toggler.hidden-md-up.pull-xs-right(type='button', data-toggle='collapse', data-target='#navbar') &#x2630;
-  #navbar.navbar-nav.collapse.navbar-toggleable-sm
-    .container
-      a.navbar-brand(href=`${baseUrl}/`)
-        i.icn-logo.material-icons bookmark_border
-        | Bookworm
-      .nav-items.clearfix
-        if !currentUser
-          a.nav-item.nav-link(href=`${baseUrl}/register`) Sign Up
-        a.nav-item.nav-link(href=`${baseUrl}/about`) About
-        a.nav-item.nav-link(href=`${baseUrl}/contact`) Contact
-        a.nav-item.nav-link(href=`${baseUrl}/profile`) My Profile
+nav.navbar.fixed-top.navbar-dark.navbar-expand-lg
+  a.navbar-brand.ml-2(href=`${baseUrl}/`)
+    i.icn-logo.material-icons bookmark_border
+    | Bookworm
+  button.navbar-toggler.mr-4(type='button', data-toggle='collapse', data-target='#navbar', aria-controls="navbar", aria-expanded="false", aria-label="Toggle navigation")
+    span(class="navbar-toggler-icon")
+  div#navbar.collapse.navbar-collapse.mr-4
+    ul.navbar-nav.ml-auto.mt-2.mt-lg-0.pl-3
+      if !currentUser
+        li.nav-item
+          a.nav-link(href=`${baseUrl}/register`) Sign Up
+      li.nav-item
+        a.nav-link(href=`${baseUrl}/about`) About
+      li.nav-item
+        a.nav-link(href=`${baseUrl}/contact`) Contact
+      li.nav-item
+        a.nav-link(href=`${baseUrl}/profile`) My Profile
 
-      if currentUser
-        div
-          img.avatar.img-circle.hidden-xs-down(src='/img/avatar.png', alt='avatar')
-          a.btn.btn-light.pull-md-right(href=`${baseUrl}/logout`) Log out
-      else
-        a.btn.btn-info.pull-md-right(href=`${baseUrl}/login`) Login
-
+    if currentUser
+      img.avatar.rounded-circle.d-none.d-lg-block(src='/img/avatar.png', alt='avatar')
+      a.btn.btn-light.ml-3.ml-lg-1(href=`${baseUrl}/logout`) Log out
+    else
+      a.btn.btn-info.ml-3.ml-lg-1(href=`${baseUrl}/login`) Login

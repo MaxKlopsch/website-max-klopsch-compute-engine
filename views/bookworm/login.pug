@@ -3,8 +3,8 @@ extends bookLayout
 block content
   .main.container
     .row
-      .col-md-6.col-md-offset-3
-        h1.display-4.m-b-2 Log In
+      .col-md-6.offset-md-3
+        h1.display-4.mb-2 Log In
         form(method='POST' action=`${baseUrl}/login`)
           div.form-group
             label(for='email') Email
