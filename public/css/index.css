@@ -172,6 +172,11 @@ footer *, footer *:visited, nav *, nav *:visited {
     font-size: 1.2em;
 }
 
+.brand span {
+    text-transform: capitalize;
+    font-size: 1em;
+}
+
 .hiddenMobile {
     display: none;
 }
