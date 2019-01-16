@@ -17,6 +17,10 @@ a, a:visited {
     text-decoration: none;
 }
 
+a:hover {
+    color: #004D40;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #212121;
 }
@@ -48,6 +52,10 @@ main h3::after {
     margin-top: 5px;
 }
 
+main {
+    padding-top: 65px;
+}
+
 section {
     padding: 12px 12.5% 12px 12.5%;
     margin: 0 auto 0 auto;
@@ -55,6 +63,14 @@ section {
 
 nav {
     background-color: #00695C;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 section:nth-of-type(2n) {
@@ -131,19 +147,14 @@ footer *, footer *:visited, nav *, nav *:visited {
     padding: 0 10px;
 }
 
-nav a {
-    display: block;
-    padding: 10px;
-}
-
-#nav a:hover {
+.nav a:hover {
     background-color: #B2DFDB;
     color: #212121;
 }
 
 .hamburger {
-    padding: 10px 0 5px 10px;
-    border-bottom: 3px solid #64FFDA;
+    justify-self: end;
+    padding: 5px 20px 0 0;
 }
 .hamburgerSlice {
     width: 30px;
@@ -153,27 +164,52 @@ nav a {
     margin-bottom: 5px;
 }
 
-#nav {
+.brand {
+    text-transform: uppercase;
+}
+
+.brand:hover {
+    font-size: 1.2em;
+}
+
+.hiddenMobile {
     display: none;
 }
 
-@media (min-width: 769px) {
-    #nav {
-        display: block;
-        padding: 0 12.5% 0 12.5%;
-        border-bottom: 3px solid #64FFDA;
-    }
+.nav {
+    grid-column: 1 / 3;
+}
 
+.nav a {
+    display: block;
+    padding: 5px;
+}
+
+@media (min-width: 769px) {
     .hamburger {
         display: none;
-        border-bottom: none;
-    }
-
-    nav a {
-        display: inline-block;
     }
 
     .contact {
         width: 50%;
+    }
+
+    .hiddenMobile {
+        display: unset;
+    }
+
+    nav {
+        padding: 15px;
+    }
+
+    .nav {
+        grid-column: unset;
+        justify-self: end;
+        padding-right: 25px;
+    }
+
+    .nav a {
+        display: inline-block;
+        padding: 5px 15px;
     }
 }

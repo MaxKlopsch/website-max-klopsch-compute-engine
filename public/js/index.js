@@ -1,8 +1,10 @@
+'use strict';
+
 function toggleMenu() {
     var x = document.getElementById("nav");
-    if (x.style.display === "block") {
-        x.style.display = "none";
+    if (x.classList.contains("hiddenMobile")) {
+        x.classList.remove("hiddenMobile");
     } else {
-        x.style.display = "block";
+        x.classList.add("hiddenMobile");
     }
 }

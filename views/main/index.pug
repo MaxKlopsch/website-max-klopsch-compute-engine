@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
         meta(http-equiv='x-ua-compatible', content='ie=edge')
-        title Home | Max Klopsch
+        title Max Klopsch | Full-stack Web Developer | Portfolio
         meta(name="description", content="Hey, I'm Max Klopsch. This is my personal website. I'm a full-stack web developer living in Nottingham, UK.")
         link(rel="shortcut icon", href="/img/favicon.ico")
         link(rel='stylesheet', href='/css/index.css')
@@ -13,11 +13,12 @@ html(lang="en")
         script window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-132357316-1');
     body
         nav
-            a(href="javascript:void(0);", onclick="toggleMenu()").hamburger
+            a(href="/").brand Max Klopsch
+            div(onclick="toggleMenu()").hamburger
                 div.hamburgerSlice
                 div.hamburgerSlice
                 div.hamburgerSlice
-            div#nav
+            div.hiddenMobile.nav#nav
                 a(href="/") Home
                 a(href="/resume") Resume
                 a(href="/projects") Projects
@@ -94,7 +95,6 @@ html(lang="en")
                 textarea(id="message", name="message", placeholder="Your message goes here...", required)
                 input(type="submit", value="Submit")
         footer#footer
-            a(href="#top").top &uArr;
             div#social
                 h2 Find me on
                 ul
