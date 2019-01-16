@@ -114,11 +114,10 @@ input[type=submit]:hover {
     background-color: #B2DFDB;
     padding: 10px 20px;
     width: 80%;
-    margin: 12px auto 0 auto;
+    margin: 20px auto 35px auto;
 }
 
 footer {
-    margin-top: 25px;
     background-color: #00695C;
     padding: 25px;
     text-align: center;
@@ -168,13 +167,10 @@ footer *, footer *:visited, nav *, nav *:visited {
     text-transform: uppercase;
 }
 
-.brand:hover {
-    font-size: 1.2em;
-}
-
 .brand span {
     text-transform: capitalize;
-    font-size: 1em;
+    font-size: 0.8rem;
+    display: block;
 }
 
 .hiddenMobile {
@@ -191,6 +187,10 @@ footer *, footer *:visited, nav *, nav *:visited {
 }
 
 @media (min-width: 769px) {
+    main {
+        padding-top: 85px;
+    }
+
     .hamburger {
         display: none;
     }

@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('main/index');
+    res.render('main/index', { title: "Max Klopsch | Full-stack Web Developer | Portfolio", metaDescription: "Hey, I'm Max Klopsch. This is my personal website. I'm a full-stack web developer living in Nottingham, UK."});
 });
 
 router.get('/resume', (req, res) => {
-    res.render('main/resume');
+    res.render('main/resume', { title: "Resume | Max Klopsch", metaDescription: "I'm Max Klopsch, a full-stack web developer living in Nottingham, UK. You can find my resume with my experience and skills here."});
 });
 
 router.get('/contact', (req, res) => {
-    res.render('main/contact', { sent: false });
+    res.render('main/contact', { sent: false, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
 });
 
 /**

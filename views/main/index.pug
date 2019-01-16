@@ -1,129 +1,74 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset='utf-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-        meta(http-equiv='x-ua-compatible', content='ie=edge')
-        title Max Klopsch | Full-stack Web Developer | Portfolio
-        meta(name="description", content="Hey, I'm Max Klopsch. This is my personal website. I'm a full-stack web developer living in Nottingham, UK.")
-        link(rel="apple-touch-icon", sizes="57x57", href="/img/favicon/apple-icon-57x57.png")
-        link(rel="apple-touch-icon", sizes="60x60", href="/img/favicon/apple-icon-60x60.png")
-        link(rel="apple-touch-icon", sizes="72x72", href="/img/favicon/apple-icon-72x72.png")
-        link(rel="apple-touch-icon", sizes="76x76", href="/img/favicon/apple-icon-76x76.png")
-        link(rel="apple-touch-icon", sizes="114x114", href="/img/favicon/apple-icon-114x114.png")
-        link(rel="apple-touch-icon", sizes="120x120", href="/img/favicon/apple-icon-120x120.png")
-        link(rel="apple-touch-icon", sizes="144x144", href="/img/favicon/apple-icon-144x144.png")
-        link(rel="apple-touch-icon", sizes="152x152", href="/img/favicon/apple-icon-152x152.png")
-        link(rel="apple-touch-icon", sizes="180x180", href="/img/favicon/apple-icon-180x180.png")
-        link(rel="icon", type="image/png", sizes="192x192", href="/img/favicon/android-icon-192x192.png")
-        link(rel="icon", type="image/png", sizes="32x32", href="/img/favicon/favicon-32x32.png")
-        link(rel="icon", type="image/png", sizes="96x96", href="/img/favicon/favicon-96x96.png")
-        link(rel="icon", type="image/png", sizes="16x16", href="/img/favicon/favicon-16x16.png")
-        meta(name="msapplication-TileColor", content="#00695C")
-        meta(name="msapplication-TileImage", content="/img/favicon/ms-icon-144x144.png")
-        link(rel="manifest", href="/manifest.json")
-        meta(name="theme-color", content="#00695C")
-        link(rel='stylesheet', href='/css/index.css')
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-132357316-1")
-        script window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-132357316-1');
-    body
-        nav
-            a(href="/").brand Max Klopsch 
-                span Full-stack Web Developer
-            div(onclick="toggleMenu()").hamburger
-                div.hamburgerSlice
-                div.hamburgerSlice
-                div.hamburgerSlice
-            div.hiddenMobile.nav#nav
-                a(href="/") Home
-                a(href="/resume") Resume
-                a(href="/projects") Projects
-                a(href="/contact") Contact
-        main
-            h1 Max Klopsch | Portfolio
-            section
-                h2 About me
-                p Hey, I'm Max! I'm a full-stack developer living in Nottingham, UK. JavaScript, PHP, Python. HTML, CSS, jQuery. NodeJS, Express, Pug, MySQL, MongoDB. Experience working with Magento 1.xx.
-                p I'm available for junior developer positions and freelance projects.
-            section
-                h2 Resume
-                p
-                    | Check out my 
-                    a(href="/resume") resume
-                    |  to learn more about my experience! Or you can download my 
-                    a(href="/docs/max-klopsch-resume.pdf") resume as a PDF
-                    |.
-            section
-                h2 Certifications, Qualifications, Achievements
-                ul
-                    li BSc Aerospace Engineering @ TU Delft in Delft, Netherlands
-                    li Fundamentals of Digital Marketing Certification, Google Digital Garage
-            section
-                h2 Projects
-                p
-                    | Since July 2018 I have been studying web development with 
-                    a(href="https://teamtreehouse.com", target="_blank") Treehouse
-                    | . It's a great platform with easy to understand lectures and many projects you can build. Checkout my 
-                    a(href="https://teamtreehouse.com/maxklopsch", target="_blank") Treehouse profile
-                    |  to see my progress and skills. Below you can also find a selection of projects I have built and deployed on my website:
-                h3 JavaScript Projects
-                p
-                    a(href="/four-in-a-row") Play Four In A Row
-                p
-                    a(href="/cards/home") "Login" to begin Flash Card Study
-                p
-                    a(href="/books") Bookworm app with login and user profiles
-                p
-                    a(href="/rsvp") RSVP app that lets you add and remove guests and track their confirmation status
-                h3 Vue.js Projects
-                p
-                    a(href="/library") Public library register page
-                p
-                    a(href="/flashcards") Flashcards app
-                p
-                    a(href="/news") News app
-                h3 Bootstrap 4 Projects
-                p
-                    a(href="/full-stack-conf-coming-soon") Full Stack Conf Coming Soon Page
-                p
-                    a(href="/full-stack-conf") Full Stack Conf landing and registration page
-                h3 CSS Projects
-                p
-                    a(href="/best-city-guide") Flexbox Best City Guide Page
-            section
-                h2 Hire me
-                p
-                    | I would like to work as a junior developer for a company in the East Midlands, UK or remote. I am also available to work on freelance projects, e.g. creating custom websites for you or your business. Feel free to contact me using the 
-                    a(href="#footer") contact form
-                    |  in the footer or reach out via 
-                    a(href="#footer") social media
-                    | .
-        div.contact
-            h2 Contact me
-            form(method="POST", action="/contact")
-                label(for="name") Name
-                input(type="text", id="name", name="name", placeholder="Your name", required)
-                label(for="email") Email
-                input(type="email", id="email", name="email", placeholder="name@domain.com", required)
-                label(for="phone") Phone
-                input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
-                label(for="message") Message
-                textarea(id="message", name="message", placeholder="Your message goes here...", required)
-                input(type="submit", value="Submit")
-        footer#footer
-            div#social
-                h2 Find me on
-                ul
-                    li
-                        a(href="https://www.linkedin.com/in/MaxKlopsch/", target="_blank", title="LinkedIn")
-                            img(src="/img/LinkedIn.svg", alt="LinkedIn Logo")
-                    li
-                        a(href="https://github.com/MaxKlopsch", target="_blank", title="GitHub")
-                            img(src="/img/GitHub.svg", alt="GitHub Logo")
-                    li
-                        a(href="https://teamtreehouse.com/maxklopsch", target="_blank", title="Team Treehouse")
-                            img(src="/img/Treehouse.svg", alt="Team Treehouse Logo")
-            p#copyright Max Klopsch &copy; 
-                = new Date().getFullYear()
-        script(src="/js/index.js")
+extends layout
+
+block content
+    main
+        h1 Max Klopsch | Portfolio
+        section
+            h2 About me
+            p Hey, I'm Max! I'm a full-stack developer living in Nottingham, UK. JavaScript, PHP, Python. HTML, CSS, jQuery. NodeJS, Express, Pug, MySQL, MongoDB. Experience working with Magento 1.xx.
+            p I'm available for junior developer positions and freelance projects.
+        section
+            h2 Resume
+            p
+                | Check out my 
+                a(href="/resume") resume
+                |  to learn more about my experience! Or you can download my 
+                a(href="/docs/max-klopsch-resume.pdf") resume as a PDF
+                |.
+        section
+            h2 Certifications, Qualifications, Achievements
+            ul
+                li BSc Aerospace Engineering @ TU Delft in Delft, Netherlands
+                li Fundamentals of Digital Marketing Certification, Google Digital Garage
+        section
+            h2 Projects
+            p
+                | Since July 2018 I have been studying web development with 
+                a(href="https://teamtreehouse.com", target="_blank") Treehouse
+                | . It's a great platform with easy to understand lectures and many projects you can build. Checkout my 
+                a(href="https://teamtreehouse.com/maxklopsch", target="_blank") Treehouse profile
+                |  to see my progress and skills. Below you can also find a selection of projects I have built and deployed on my website:
+            h3 JavaScript Projects
+            p
+                a(href="/four-in-a-row") Play Four In A Row
+            p
+                a(href="/cards/home") "Login" to begin Flash Card Study
+            p
+                a(href="/books") Bookworm app with login and user profiles
+            p
+                a(href="/rsvp") RSVP app that lets you add and remove guests and track their confirmation status
+            h3 Vue.js Projects
+            p
+                a(href="/library") Public library register page
+            p
+                a(href="/flashcards") Flashcards app
+            p
+                a(href="/news") News app
+            h3 Bootstrap 4 Projects
+            p
+                a(href="/full-stack-conf-coming-soon") Full Stack Conf Coming Soon Page
+            p
+                a(href="/full-stack-conf") Full Stack Conf landing and registration page
+            h3 CSS Projects
+            p
+                a(href="/best-city-guide") Flexbox Best City Guide Page
+        section
+            h2 Hire me
+            p
+                | I would like to work as a junior developer for a company in the East Midlands, UK or remote. I am also available to work on freelance projects, e.g. creating custom websites for you or your business. Feel free to contact me using the 
+                a(href="#footer") contact form
+                |  in the footer or reach out via 
+                a(href="#footer") social media
+                | .
+    div.contact
+        h2 Contact me
+        form(method="POST", action="/contact")
+            label(for="name") Name
+            input(type="text", id="name", name="name", placeholder="Your name", required)
+            label(for="email") Email
+            input(type="email", id="email", name="email", placeholder="name@domain.com", required)
+            label(for="phone") Phone
+            input(type="tel", id="phone", name="phone", placeholder="+44 12345 67891")
+            label(for="message") Message
+            textarea(id="message", name="message", placeholder="Your message goes here...", required)
+            input(type="submit", value="Submit")
