@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    main
+        h1= `An Error Has Occured: ${error.status} - ${error.message}`
+        section
+            p.center Check that you typed the address correctly, go back to your previous page or 
+                a(href="/") Go Home
+                | .

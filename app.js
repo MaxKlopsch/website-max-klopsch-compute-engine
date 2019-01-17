@@ -135,7 +135,7 @@ app.use((err, req, res, next) => {
     } else if (req.originalUrl.startsWith('/cards')) {
         res.render('flashcards/error');
     } else {
-        res.render('flashcards/error');
+        res.render('main/error', {title: `Error ${err.status} - ${err.message} | Max Klopsch`, metaDescription: `An error has occured when you tried to visit this page: ${err.status} - ${err.message}`});
     }
 });
 

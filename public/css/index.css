@@ -6,6 +6,9 @@ body {
     margin: 0;
     color: #424242;
     background-color: #E0F2F1;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 p {
@@ -54,6 +57,7 @@ main h3::after {
 
 main {
     padding-top: 65px;
+    flex: 1;
 }
 
 section {
@@ -219,6 +223,10 @@ footer *, footer *:visited, nav *, nav *:visited {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+}
+
+.center {
+    text-align: center;
 }
 
 @media (min-width: 769px) {
