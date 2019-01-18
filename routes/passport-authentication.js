@@ -10,7 +10,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    res.send("Register");
+    res.render('passportAuthApp/register');
 });
 
 module.exports = router;
