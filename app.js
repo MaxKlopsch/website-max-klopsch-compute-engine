@@ -83,11 +83,13 @@ const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
 const apiRoutes = require('./routes/restApi');
 const bookAppRoutes = require('./routes/bookApp');
+const passportAuthApp = require('./routes/passport-authentication');
 
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
+app.use('/passport', passportAuthApp);
 
 app.post('/contact', (req, res) => {
 
