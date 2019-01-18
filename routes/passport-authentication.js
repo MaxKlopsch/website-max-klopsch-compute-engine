@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send("This works!");
+    res.render('passportAuthApp/welcome');
 });
 
 router.get('/login', (req, res) => {
