@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.send("Login");
+    res.render('passportAuthApp/login');
 });
 
 router.get('/register', (req, res) => {
