@@ -1,0 +1,6 @@
+if typeof errors != 'undefined'
+    each error in errors
+        div(role="alert").alert.alert-warning.alert-dismissible.fade.show
+            = error.msg
+            button(type="button", data-dismiss="alert", aria-label="Close").close
+                span(aria-hidden="true") &times;

@@ -7,6 +7,7 @@ block content
                 h1.text-center.mb-3
                     i.fas.fa-user-plus
                     |  Register
+                include includes/messages.pug
                 form(action=`${baseUrl}/register`, method="POST")
                     div.form-group
                         label(for="name") Name
