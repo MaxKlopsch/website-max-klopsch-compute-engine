@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const { ensureAuthenticated } = require('../config/auth');
 
 // User model
 const User = require('../config/models/passport-user');
@@ -98,6 +99,20 @@ router.post('/login', (req, res, next) => {
         failureRedirect: `${req.baseUrl}/login`,
         failureFlash: true
     })(req, res, next);
+});
+
+// Dashboard
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
+    res.render('passportAuthApp/dashboard', {
+        name: req.user.name
+    });
+});
+
+// Logout Handler
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are now logged out.');
+    res.redirect('login');
 });
 
 module.exports = router;
