@@ -7,6 +7,7 @@ block content
                 h1.text-center.mb-3
                     i.fas.fa-sign-in-alt
                     |  Login
+                include includes/messages.pug
                 form(action=`${baseUrl}/login`, method="POST")
                     div.form-group
                         label(for="email") Email

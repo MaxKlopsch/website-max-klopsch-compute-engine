@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const nodemailer = require('nodemailer');
+const flash = require('connect-flash');
 
 // db instance connection
 const db = require("./config/db");
@@ -89,7 +90,7 @@ app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
-app.use('/passport', passportAuthApp);
+app.use('/passport', flash(), passportAuthApp);
 
 app.post('/contact', (req, res) => {
 

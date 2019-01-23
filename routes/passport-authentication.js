@@ -5,6 +5,14 @@ const bcrypt = require('bcrypt');
 // User model
 const User = require('../config/models/passport-user');
 
+// Global variables
+router.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 // make baseUrl available in templates
 router.use((req, res, next) => {
     res.locals.baseUrl = req.baseUrl;
@@ -72,6 +80,7 @@ router.post('/register', (req, res) => {
                     // Save user
                     newUser.save()
                         .then(user => {
+                            req.flash('success_msg', 'You are now registered and can log in.');
                             res.redirect(`${req.baseUrl}/login`);
                         })
                         .catch(err => console.error(err));
