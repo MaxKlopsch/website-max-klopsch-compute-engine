@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    div.row.mt-5
+        div.col-md-6.m-auto
+            div.card.card-body
+                h1.text-center.mb-3
+                    i.fas.fa-user-plus
+                    |  Register
+                include includes/messages.pug
+                form(action=`${baseUrl}/register`, method="POST")
+                    div.form-group
+                        label(for="name") Name
+                        input(type="name", id="name", name="name", placeholder="Enter Name", value=(typeof name != 'undefined' ? name : '')).form-control
+                    div.form-group
+                        label(for="email") Email
+                        input(type="email", id="email", name="email", placeholder="Enter Email", value=(typeof email != 'undefined' ? email : ''), autocomplete="username").form-control
+                    div.form-group
+                        label(for="password") Password
+                        input(type="password", id="password", name="password", placeholder="Create Password", value=(typeof password != 'undefined' ? password : ''), autocomplete="new-password").form-control
+                    div.form-group
+                        label(for="password2") Confirm Password
+                        input(type="password", id="password2", name="password2", placeholder="Confirm Password", value=(typeof password2 != 'undefined' ? password2 : ''), autocomplete="new-password").form-control
+                    button(type="submit").btn.btn-primary.btn-block Register
+                p.lead.mt-4 Have An Account? 
+                    a(href=`${baseUrl}/login`) Login

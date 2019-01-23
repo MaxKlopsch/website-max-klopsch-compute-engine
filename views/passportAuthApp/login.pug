@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    div.row.mt-5
+        div.col-md-6.m-auto
+            div.card.card-body
+                h1.text-center.mb-3
+                    i.fas.fa-sign-in-alt
+                    |  Login
+                include includes/messages.pug
+                form(action=`${baseUrl}/login`, method="POST")
+                    div.form-group
+                        label(for="email") Email
+                        input(type="email", id="email", name="email", placeholder="Enter Email", autocomplete="username").form-control
+                    div.form-group
+                        label(for="password") Password
+                        input(type="password", id="password", name="password", placeholder="Enter Password", autocomplete="current-password").form-control
+                    button(type="submit").btn.btn-primary.btn-block Login
+                p.lead.mt-4 No Account? 
+                    a(href=`${baseUrl}/register`) Register

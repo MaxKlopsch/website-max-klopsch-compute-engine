@@ -61,6 +61,6 @@ typings/
 .next
 
 # secrets
-secret.txt
 session-secret.txt
 email-auth.json
+config/keys.js

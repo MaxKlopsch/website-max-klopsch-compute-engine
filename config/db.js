@@ -1,10 +1,9 @@
 const fs = require('fs');
 const mongoose = require("mongoose");
 
-const dbURI = fs.readFileSync('./secret.txt', 'utf8');
+const dbURI = require('./keys').MongoURI;
 
 const options = {
-    // useMongoClient: true,
     useNewUrlParser: true
 };
 
@@ -18,7 +17,7 @@ db.on("error", (err) => {
 });
 
 db.once("open", () => {
-    console.log("DB connection successful");
+    console.log("MongoDB connection successful");
 });
 
 module.exports.db = db;

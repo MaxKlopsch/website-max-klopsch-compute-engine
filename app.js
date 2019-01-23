@@ -12,6 +12,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const nodemailer = require('nodemailer');
+const flash = require('connect-flash');
+const passport = require('passport');
 
 // db instance connection
 const db = require("./config/db");
@@ -63,6 +65,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public'));
 
+// Passport config
+require('./config/passport')(passport);
+
 // view engine setup
 app.set('view engine', 'pug');
 app.set('views', 'views');
@@ -83,11 +88,13 @@ const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
 const apiRoutes = require('./routes/restApi');
 const bookAppRoutes = require('./routes/bookApp');
+const passportAuthApp = require('./routes/passport-authentication');
 
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
+app.use('/passport', passport.initialize(), passport.session(), flash(), passportAuthApp);
 
 app.post('/contact', (req, res) => {
 
