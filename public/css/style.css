@@ -14,6 +14,11 @@ header {
   font-size: 14px;
 }
 
+footer {
+  margin-top: 50px;
+  text-align: center;
+}
+
 header img {
   width: 100%;
   max-width: 350px;
@@ -159,11 +164,7 @@ input {
 
 /* Flash Cards */
 .flashcards {
-  position: absolute;
-  top: 240px;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  margin-top: 20px;
 }
 
 .card {
@@ -251,20 +252,12 @@ input {
   color: #fff;
 }
 
-.card-flip-wrap {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  padding-left: 500px;
-}
-
 .card-flip {
   max-width: 25px;
   background-color: #fff;
   border-radius: 50px;
   padding: 20px;
   border: 2px solid #fff;
-  margin-top: 30px;
 }
 
 .card-flip:hover {
