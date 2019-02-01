@@ -129,10 +129,10 @@ app.post('/contact', (req, res) => {
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message });
+            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
         } else {
             console.log('Email sent: ' + info.response);
-            res.render('main/contact', { sent: true });
+            res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
         }
     });
 });
