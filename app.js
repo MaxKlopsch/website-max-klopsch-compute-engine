@@ -6,6 +6,7 @@ const http = require('http');
 const https = require('https');
 const express = require('express');
 const helmet = require('helmet');
+const compression = require('compression');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
@@ -34,7 +35,11 @@ if (app.get("env") === "production") {
     };
 }
 
+// secure app, use HTTPS, etc.
 app.use(helmet());
+
+// compress all responses
+app.use(compression());
 
 app.use((req, res, next) => {
     if (req.headers.host.slice(0, 4) === 'www.') {
