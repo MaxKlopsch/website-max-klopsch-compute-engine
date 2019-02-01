@@ -33,7 +33,6 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
-    "@google-cloud/nodejs-repo-tools": "^2.3.0",
     "nodemon": "^1.18.9"
   }
 }
