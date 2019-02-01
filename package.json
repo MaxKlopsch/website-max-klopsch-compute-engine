@@ -30,7 +30,8 @@
     "nodemailer": "^5.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "spdy": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

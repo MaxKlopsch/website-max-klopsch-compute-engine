@@ -3,7 +3,7 @@ global.__basedir = __dirname;
 // Dependencies
 const fs = require('fs');
 const http = require('http');
-const https = require('https');
+const spdy = require('spdy');
 const express = require('express');
 const helmet = require('helmet');
 const compression = require('compression');
@@ -162,7 +162,7 @@ app.use((err, req, res, next) => {
 const httpServer = http.createServer(app);
 let httpsServer;
 if (app.get("env") === "production") {
-    httpsServer = https.createServer(credentials, app);
+    httpsServer = spdy.createServer(credentials, app);
 }
 
 // Usage: sudo npm start
@@ -177,7 +177,12 @@ httpServer.listen(PORT, () => {
     console.log(`HTTP Server running on port ${PORT}`);
 });
 if (app.get("env") === "production") {
-    httpsServer.listen(443, () => {
-        console.log('HTTPS Server running on port 443');
+    httpsServer.listen(443, (error) => {
+        if (error) {
+            console.error(error);
+            return process.exit(1);
+        } else {
+            console.log('HTTPS Server running on port 443');
+        }
     });
 }
