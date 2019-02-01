@@ -41,6 +41,13 @@ app.use(helmet());
 // compress all responses
 app.use(compression());
 
+// Allow CORS
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use((req, res, next) => {
     if (req.headers.host.slice(0, 4) === 'www.') {
         var newHost = req.headers.host.slice(4);
