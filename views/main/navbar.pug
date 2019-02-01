@@ -1,12 +1,19 @@
 nav
-    a(href="/").brand Max Klopsch 
-        span Full-stack Web Developer
+    div.brand
+        a(href="/")
+            img(src="/img/favicon/ms-icon-70x70.png", alt="Max Klopsch website logo - Code brackets").site-logo
+            div.site-name Max Klopsch 
+                span Full-stack Web Developer
     div(onclick="toggleMenu()").hamburger
         div.hamburgerSlice
         div.hamburgerSlice
         div.hamburgerSlice
     div.hiddenMobile.nav#nav
         a(href="/") Home
+        |  
         a(href="/resume") Resume
+        |  
         a(href="/projects") Projects
+        |  
         a(href="/contact") Contact
+    hr.nav-border
