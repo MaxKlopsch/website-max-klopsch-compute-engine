@@ -1,0 +1,52 @@
+@media (min-width: 769px) {
+    main {
+        padding-top: 85px;
+    }
+
+
+    /* Main website navigation styles */
+
+    .hamburger {
+        display: none;
+    }
+
+    .hiddenMobile {
+        display: unset;
+    }
+
+    nav {
+        padding: 15px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .brand {
+        grid-column: 1 / 3;
+    }
+
+    .nav {
+        grid-column: span 4;
+        justify-self: end;
+        margin: 0;
+        border: none;
+    }
+
+    .nav a {
+        display: inline-block;
+        padding: 5px 15px;
+        border: none;
+    }
+
+    .nav-border {
+        display: block;
+        grid-row: 2 / 3;
+        margin: 15px 0 0 0;
+        grid-column: 2 / -2;
+    }
+
+
+    /* Contact form styles */
+
+    .contact {
+        width: 50%;
+    }
+}
