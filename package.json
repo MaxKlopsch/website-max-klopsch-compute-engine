@@ -14,7 +14,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified \" && exit 1"
+    "test": "echo \"Error: no test specified \" && exit 1",
+    "prep": "node dev/clean-css.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
@@ -34,6 +35,7 @@
     "spdy": "^4.0.0"
   },
   "devDependencies": {
+    "clean-css": "^4.2.1",
     "nodemon": "^1.18.9"
   }
 }
