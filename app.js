@@ -8,6 +8,7 @@ const express = require('express');
 const helmet = require('helmet');
 const createError = require('http-errors');
 const morgan = require('morgan');
+const winston = require('./config/winston');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -23,7 +24,7 @@ const db = require("./config/db");
 
 const app = express();
 
-app.use(morgan('combined'));
+app.use(morgan('combined', { stream: winston.stream }));
 
 // Certificate
 let privateKey, certificate, ca, credentials;
@@ -149,6 +150,9 @@ app.use((req, res, next) => {
 // error handler
 // define as the last app.use callback
 app.use((err, req, res, next) => {
+    // add winston logging
+    winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.path} - ${req.method} - ${req.ip}`);
+
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
