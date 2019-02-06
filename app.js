@@ -7,6 +7,7 @@ const spdy = require('spdy');
 const express = require('express');
 const helmet = require('helmet');
 const createError = require('http-errors');
+const morgan = require('morgan');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -21,6 +22,8 @@ const passport = require('passport');
 const db = require("./config/db");
 
 const app = express();
+
+app.use(morgan('combined'));
 
 // Certificate
 let privateKey, certificate, ca, credentials;
