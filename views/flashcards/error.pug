@@ -2,9 +2,10 @@ extends layout
 
 block content
     section.desk
-        h1= `${error.message} - Status: ${error.status}`
+        h1= `${message} - Status: ${status}`
         img.desk-items(src="/img/desk.svg", alt="Desk")
         a.button-primary-small(href="/") Go Home
         .paper
-            pre.stack-trace Stack Trace would be here
+            if stack
+                pre.stack-trace #{stack}
         .tear

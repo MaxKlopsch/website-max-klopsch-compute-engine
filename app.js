@@ -155,16 +155,17 @@ app.use((err, req, res, next) => {
 
     // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.locals.stack = app.get('env') === 'development' ? err.stack : false;
 
     // render the error page
     res.status(err.status || 500);
+    res.locals.status = err.status || 500;
     if (req.originalUrl.startsWith('/books')) {
         res.render('bookworm/bookError', { baseUrl: '/books' });
     } else if (req.originalUrl.startsWith('/cards')) {
         res.render('flashcards/error');
     } else {
-        res.render('main/error', {title: `Error ${err.status} - ${err.message} | Max Klopsch`, metaDescription: `An error has occured when you tried to visit this page: ${err.status} - ${err.message}`});
+        res.render('main/error', {title: `Error ${res.locals.status} - ${res.locals.message} | Max Klopsch`, metaDescription: `An error has occured when you tried to visit this page: ${res.locals.status} - ${res.locals.message}`});
     }
 });
 
