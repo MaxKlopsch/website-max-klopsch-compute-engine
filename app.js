@@ -6,6 +6,7 @@ const http = require('http');
 const spdy = require('spdy');
 const express = require('express');
 const helmet = require('helmet');
+const createError = require('http-errors');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
@@ -139,18 +140,20 @@ app.post('/contact', (req, res) => {
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    next(createError(404, 'Not Found.'));
 });
 
 // error handler
 // define as the last app.use callback
 app.use((err, req, res, next) => {
-    res.locals.error = err;
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
     res.status(err.status || 500);
     if (req.originalUrl.startsWith('/books')) {
-        res.render('bookworm/bookError', { message: err.message, baseUrl: '/books' });
+        res.render('bookworm/bookError', { baseUrl: '/books' });
     } else if (req.originalUrl.startsWith('/cards')) {
         res.render('flashcards/error');
     } else {
