@@ -129,24 +129,10 @@ app.use((err, req, res, next) => {
 });
 
 // Starting both http & https servers
-const httpServer = http.createServer(app);
-let httpsServer;
+let PORT = 8080;
 if (app.get("env") === "production") {
-    httpsServer = spdy.createServer(credentials, app);
-}
-
-// Usage: sudo npm start
-let PORT;
-if (app.get("env") === "production") {
+    const httpsServer = spdy.createServer(credentials, app);
     PORT = 80;
-} else {
-    PORT = 8080;
-}
-
-httpServer.listen(PORT, () => {
-    console.log(`HTTP Server running on port ${PORT}`);
-});
-if (app.get("env") === "production") {
     httpsServer.listen(443, (error) => {
         if (error) {
             console.error(error);
@@ -156,3 +142,8 @@ if (app.get("env") === "production") {
         }
     });
 }
+
+const httpServer = http.createServer(app);
+httpServer.listen(PORT, () => {
+    console.log(`HTTP Server running on port ${PORT}`);
+});
