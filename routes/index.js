@@ -1,5 +1,14 @@
+const fs = require('fs');
 const express = require('express');
+const nodemailer = require('nodemailer');
 const router = express.Router();
+
+// Setting up nodemailer with Gmail settings
+const auth = JSON.parse(fs.readFileSync('./email-auth.json'));
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth
+});
 
 router.get('/', (req, res) => {
     res.render('main/index', { title: "Max Klopsch | Full-stack Web Developer | Portfolio", metaDescription: "Hey, I'm Max Klopsch. This is my personal website. I'm a full-stack web developer living in Nottingham, UK."});
@@ -11,6 +20,35 @@ router.get('/resume', (req, res) => {
 
 router.get('/contact', (req, res) => {
     res.render('main/contact', { sent: false, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+});
+
+router.post('/contact', (req, res) => {
+
+    const mailOptions = {
+        from: `"Max Klopsch Website" ${auth.user}`,
+        to: auth.user,
+        subject: 'New Contact Request Max Klopsch Website',
+        html: `
+        <p>You have a new contact request.</p>
+        <h3>Contact Details:</h3>
+        <ul>
+            <li>Name: ${req.body.name}</li>
+            <li>Email: ${req.body.email}</li>
+            <li>Phone: ${req.body.phone}</li>
+        </ul>
+        <h3>Message:</h3>
+        <p>${req.body.message}</p>`
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+        }
+    });
 });
 
 /**

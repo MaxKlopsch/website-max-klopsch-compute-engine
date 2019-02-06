@@ -15,7 +15,6 @@ const jsonParser = bodyParser.json();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const nodemailer = require('nodemailer');
 const flash = require('connect-flash');
 const passport = require('passport');
 
@@ -89,17 +88,6 @@ require('./config/passport')(passport);
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
-// Setting up nodemailer with Gmail settings
-const auth = JSON.parse(fs.readFileSync('email-auth.json'));
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth
-});
-
-// Used to serve static file for Let's Encrypt certificate
-// Needs limiting to only public static file and see if still needed to renew certificate
-// app.use(express.static(__dirname, { dotfiles: 'allow' } ));
-
 // include routes
 const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
@@ -112,35 +100,6 @@ app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
 app.use('/books', jsonParser, bookAppRoutes);
 app.use('/passport', passport.initialize(), passport.session(), flash(), passportAuthApp);
-
-app.post('/contact', (req, res) => {
-
-    const mailOptions = {
-        from: `"Max Klopsch Website" ${auth.user}`,
-        to: auth.user,
-        subject: 'New Contact Request Max Klopsch Website',
-        html: `
-        <p>You have a new contact request.</p>
-        <h3>Contact Details:</h3>
-        <ul>
-            <li>Name: ${req.body.name}</li>
-            <li>Email: ${req.body.email}</li>
-            <li>Phone: ${req.body.phone}</li>
-        </ul>
-        <h3>Message:</h3>
-        <p>${req.body.message}</p>`
-    };
-
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
-        } else {
-            console.log('Email sent: ' + info.response);
-            res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
-        }
-    });
-});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
