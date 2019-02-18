@@ -18,10 +18,12 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const passport = require('passport');
 
-// db instance connection
-const db = require("./config/db");
-
 const app = express();
+
+// MongoDB instance connection
+const db = require("./config/db");
+// MySQL connection
+if (app.get("env") === "production") {const MySQLDB = require("./config/MySQLDB").db;}
 
 app.use(morgan('combined', { stream: winston.stream }));
 
