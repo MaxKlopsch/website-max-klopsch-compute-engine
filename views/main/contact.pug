@@ -32,4 +32,7 @@ block content
                         textarea(id="message", name="message", placeholder="Your message goes here...", value=message, required)
                     else
                         textarea(id="message", name="message", placeholder="Your message goes here...", required)
+                    input(type="hidden", id="token", name="token", style="display:none")
                     input(type="submit", value="Submit")
+                script(src="https://www.google.com/recaptcha/api.js?render=6LevKJIUAAAAACNYODrFE2nQnV0Q_gbi6wuNwCKR")
+                script() grecaptcha.ready(function() { grecaptcha.execute('6LevKJIUAAAAACNYODrFE2nQnV0Q_gbi6wuNwCKR', {action: 'contact'}).then(function(token) { document.getElementById('token').value = token; }); });

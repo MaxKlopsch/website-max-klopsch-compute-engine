@@ -1,6 +1,8 @@
 const fs = require('fs');
+const https = require('https');
 const express = require('express');
 const nodemailer = require('nodemailer');
+const recaptcha_secret = require('../config/keys').recaptcha_secret;
 const router = express.Router();
 
 // Setting up nodemailer with Gmail settings
@@ -23,6 +25,36 @@ router.get('/contact', (req, res) => {
 });
 
 router.post('/contact', (req, res) => {
+
+    const recaptcha_token = req.body.token;
+
+    const data = `secret=${recaptcha_secret}&response=${recaptcha_token}`;
+    const options = {
+        hostname: 'www.google.com',
+        port: 443,
+        path: '/recaptcha/api/siteverify',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+
+    const googlereq = https.request(options, (res) => {
+        //console.log(`Status-Code: ${res.statusCode}`);
+        let responseString = '';
+        res.on("data", function (data) {
+            responseString += data;
+            // save all the data from response
+        });
+        res.on("end", function () {
+            responseString = JSON.parse(responseString);
+            // print to console when response ends
+            console.log(responseString);
+        });
+    });
+
+    googlereq.write(data);
+    googlereq.end();
 
     const mailOptions = {
         from: `"Max Klopsch Website" ${auth.user}`,
