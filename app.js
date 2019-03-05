@@ -18,6 +18,8 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const passport = require('passport');
 
+const keys = require('./config/keys');
+
 // db instance connection
 const db = require("./config/db");
 
@@ -63,7 +65,7 @@ app.use((req, res, next) => {
 
 // use sessions for tracking logins
 app.use(session({
-    secret: fs.readFileSync('session-secret.txt', 'utf8'),
+    secret: keys.session_secret,
     resave: true,
     saveUninitialized: false,
     store: new MongoStore({
