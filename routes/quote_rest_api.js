@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../data/quotes.json');
+const quotes = require('../config/quotes');
 
 // Send a GET request to /quotes to READ a list of quotes
-router.get('/', (req, res) => {
-    res.json(data);
+router.get('/', async (req, res) => {
+    res.json(await quotes.getQuotes());
 });
 
 // Send a GET request to /quotes/:id to READ a quote
-router.get('/:id', (req, res) => {
-    res.json(data.quotes.find(quote => quote.id == req.params.id));
+router.get('/:id', async (req, res) => {
+    res.json(await quotes.getQuote(req.params.id));
 });
 
 // Send a GET request to /quotes/random to READ a random quote
