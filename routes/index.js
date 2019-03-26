@@ -28,10 +28,9 @@ router.get('/contact', (req, res) => {
 router.post('/contact', async (req, res) => {
     const recaptcha_token = req.body.token;
     try {
-        const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
-            secret: recaptcha_secret,
-            response: recaptcha_token
-        }, {
+        const response = await axios.post('https://www.google.com/recaptcha/api/siteverify',
+        `secret=${recaptcha_secret}&response=${recaptcha_token}`,
+        {
             port: 443,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
