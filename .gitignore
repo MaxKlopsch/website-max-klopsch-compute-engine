@@ -64,3 +64,6 @@ typings/
 session-secret.txt
 email-auth.json
 config/keys.js
+
+# Dummy data
+data/quotes.json
