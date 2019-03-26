@@ -99,7 +99,7 @@ const passportAuthApp = require('./routes/passport-authentication');
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 app.use('/questions', jsonParser, apiRoutes);
-app.use('/quotes', quote_rest_api_routes);
+app.use('/quotes', jsonParser, quote_rest_api_routes);
 app.use('/books', jsonParser, bookAppRoutes);
 app.use('/passport', passport.initialize(), passport.session(), flash(), passportAuthApp);
 
