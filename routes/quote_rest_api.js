@@ -60,5 +60,18 @@ router.put('/:id', async (req, res) => {
 });
 
 // Send a DELETE request to /quotes/:id to DELETE a quote
+router.delete('/:id', async (req, res) => {
+    try {
+        const quote = await quotes.getQuote(req.params.id);
+        if(quote) {
+            await quotes.deleteQuote(quote);
+            res.status(204).end();
+        } else {
+            res.status(404).json({message: "Quote not found"});
+        }
+    } catch(err) {
+        res.status(500).json({message: err.message});
+    }
+});
 
 module.exports = router;
