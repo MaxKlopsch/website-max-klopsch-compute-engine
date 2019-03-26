@@ -1,6 +1,9 @@
 const fs = require('fs');
+const https = require('https');
 const express = require('express');
+const axios = require('axios');
 const nodemailer = require('nodemailer');
+const recaptcha_secret = require('../config/keys').recaptcha_secret;
 const router = express.Router();
 
 // Setting up nodemailer with Gmail settings
@@ -22,33 +25,48 @@ router.get('/contact', (req, res) => {
     res.render('main/contact', { sent: false, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
 });
 
-router.post('/contact', (req, res) => {
+router.post('/contact', async (req, res) => {
+    const recaptcha_token = req.body.token;
+    try {
+        const response = await axios.post('https://www.google.com/recaptcha/api/siteverify',
+        `secret=${recaptcha_secret}&response=${recaptcha_token}`,
+        {
+            port: 443,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
 
-    const mailOptions = {
-        from: `"Max Klopsch Website" ${auth.user}`,
-        to: auth.user,
-        subject: 'New Contact Request Max Klopsch Website',
-        html: `
-        <p>You have a new contact request.</p>
-        <h3>Contact Details:</h3>
-        <ul>
-            <li>Name: ${req.body.name}</li>
-            <li>Email: ${req.body.email}</li>
-            <li>Phone: ${req.body.phone}</li>
-        </ul>
-        <h3>Message:</h3>
-        <p>${req.body.message}</p>`
-    };
+        if (!response.data.score || response.data.score >= 0.5) {
+            const mailOptions = {
+                from: `"Max Klopsch Website" ${auth.user}`,
+                to: auth.user,
+                subject: 'New Contact Request Max Klopsch Website',
+                html: `
+                <p>You have a new contact request.</p>
+                <h3>Contact Details:</h3>
+                <ul>
+                    <li>Name: ${req.body.name}</li>
+                    <li>Email: ${req.body.email}</li>
+                    <li>Phone: ${req.body.phone}</li>
+                </ul>
+                <h3>Message:</h3>
+                <p>${req.body.message}</p>`
+            };
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+            transporter.sendMail(mailOptions, function(err, info){
+                if (err) throw err;
+
+                console.log('Email sent: ' + info.response);
+                res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+            });
         } else {
-            console.log('Email sent: ' + info.response);
-            res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+            throw new Error('reCAPTCHA score too low');
         }
-    });
+    } catch (err) {
+        console.log(err);
+        res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+    }
 });
 
 /**
