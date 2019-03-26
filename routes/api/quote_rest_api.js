@@ -28,6 +28,10 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 }));
 
 // Send a GET request to /quotes/random to READ a random quote
+router.get('/random', asyncHandler(async (req, res, next) => {
+    res.json(await quotes.getRandomQuote());
+}));
+
 // Send a POST request to /quotes to CREATE a new quote
 router.post('/', asyncHandler(async (req, res, next) => {
     if (req.body.author && req.body.quote) {
