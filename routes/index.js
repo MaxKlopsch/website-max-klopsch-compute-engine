@@ -49,38 +49,40 @@ router.post('/contact', (req, res) => {
         res.on("end", function () {
             responseString = JSON.parse(responseString);
             // print to console when response ends
-            console.log(responseString);
+            if (responseString.score >= 0.5) {
+                const mailOptions = {
+                    from: `"Max Klopsch Website" ${auth.user}`,
+                    to: auth.user,
+                    subject: 'New Contact Request Max Klopsch Website',
+                    html: `
+                    <p>You have a new contact request.</p>
+                    <h3>Contact Details:</h3>
+                    <ul>
+                        <li>Name: ${req.body.name}</li>
+                        <li>Email: ${req.body.email}</li>
+                        <li>Phone: ${req.body.phone}</li>
+                    </ul>
+                    <h3>Message:</h3>
+                    <p>${req.body.message}</p>`
+                };
+
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                        console.log(error);
+                        res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+                    }
+                });
+            } else {
+                res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
+            }
         });
     });
 
     googlereq.write(data);
     googlereq.end();
-
-    const mailOptions = {
-        from: `"Max Klopsch Website" ${auth.user}`,
-        to: auth.user,
-        subject: 'New Contact Request Max Klopsch Website',
-        html: `
-        <p>You have a new contact request.</p>
-        <h3>Contact Details:</h3>
-        <ul>
-            <li>Name: ${req.body.name}</li>
-            <li>Email: ${req.body.email}</li>
-            <li>Phone: ${req.body.phone}</li>
-        </ul>
-        <h3>Message:</h3>
-        <p>${req.body.message}</p>`
-    };
-
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-            res.render('main/contact', { sent: "error", name: req.body.name, email: req.body.email, phone: req.body.phone, message: req.body.message, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
-        } else {
-            console.log('Email sent: ' + info.response);
-            res.render('main/contact', { sent: true, title: "Contact Me | Max Klopsch", metaDescription: "Contact Max Klopsch to find out more about him. I am available for hire for freelance projects or the right full-time position." });
-        }
-    });
 });
 
 /**
