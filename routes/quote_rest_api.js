@@ -14,9 +14,14 @@ router.get('/', async (req, res) => {
 // Send a GET request to /quotes/:id to READ a quote
 router.get('/:id', async (req, res) => {
     try {
-        res.json(await quotes.getQuote(req.params.id));
+        const quote = await quotes.getQuote(req.params.id);
+        if (quote) {
+            res.json(quote);
+        } else {
+            res.status(404).json({message: "Quote not found"});
+        }
     } catch(err) {
-        res.json({message: err.message});
+        res.status(500).json({message: err.message});
     }
 });
 
@@ -24,12 +29,16 @@ router.get('/:id', async (req, res) => {
 // Send a POST request to /quotes to CREATE a new quote
 router.post('/', async (req, res) => {
     try {
-        res.json(await quotes.createQuote({
-            quote: req.body.quote,
-            author: req.body.author
-        }));
+        if (req.body.author && req.body.quote) {
+            res.status(201).json(await quotes.createQuote({
+                quote: req.body.quote,
+                author: req.body.author
+            }));
+        } else {
+            res.status(400).json({message: "Quote and author required"});
+        }
     } catch(err) {
-        res.json({message: err.message});
+        res.status(500).json({message: err.message});
     }
 });
 
