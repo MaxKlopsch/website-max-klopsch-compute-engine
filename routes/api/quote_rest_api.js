@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const quotes = require('../config/quotes');
+const quotes = require('../../config/quotes');
 
 function asyncHandler(cb) {
     return async (req, res, next) => {

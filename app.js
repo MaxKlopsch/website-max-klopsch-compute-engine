@@ -91,15 +91,15 @@ app.set('views', 'views');
 // include routes
 const mainRoutes = require('./routes');
 const cardRoutes = require('./routes/cards');
-const apiRoutes = require('./routes/restApi');
-const quote_rest_api_routes = require('./routes/quote_rest_api');
+const apiRoutes = require('./routes/api/restApi');
+const quote_rest_api_routes = require('./routes/api/quote_rest_api');
 const bookAppRoutes = require('./routes/bookApp');
 const passportAuthApp = require('./routes/passport-authentication');
 
 app.use(mainRoutes);
 app.use('/cards', cardRoutes);
-app.use('/questions', jsonParser, apiRoutes);
-app.use('/quotes', jsonParser, quote_rest_api_routes);
+app.use('/api/questions', jsonParser, apiRoutes);
+app.use('/api/quotes', jsonParser, quote_rest_api_routes);
 app.use('/books', jsonParser, bookAppRoutes);
 app.use('/passport', passport.initialize(), passport.session(), flash(), passportAuthApp);
 
