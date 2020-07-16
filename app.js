@@ -1,6 +1,8 @@
 global.__basedir = __dirname;
 
 // Dependencies
+require('dotenv').config()
+
 const fs = require('fs');
 const http = require('http');
 const spdy = require('spdy');
